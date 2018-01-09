@@ -1,0 +1,30 @@
+{
+    "version" : "7",
+    "compilation" : {
+        "contracts_source_dirs" : [ "./contracts" ],
+        "import_remappings" : []
+    },
+    "chains" : {
+        "local" : {
+            "chain" : {
+                "class" : "populus.chain.ExternalChain"
+            },
+            "web3" : {
+                "provider" : {
+                    "class" : "web3.providers.ipc.IPCProvider",
+                    "settings" : {
+                        "ipc_path" : "./chains/local/chain_data/geth.ipc"
+                    }
+                }
+            },
+            "contracts" : {
+                "backends" : {
+                    "JSONFile" : { "$ref" : "contracts.backends.JSONFile" },
+                    "ProjectContracts" : {
+                        "$ref" : "contracts.backends.ProjectContracts"
+                    }
+                }
+            }
+        }
+    }
+}
