@@ -6,8 +6,11 @@ import './StandardToken.sol';
 contract CrowdsaleToken is StandardToken, Ownable {
     using SafeMath for uint256;
     mapping (address => bool) public crowdsales;
+    mapping (address => uint256) public waiting;
+    uint256 saled;
 
     event Sale(address to, uint256 value);
+    event Release(address to);
     event SetCrowdsale(address addr, bool state);
 
     function setCrowdsale(address _addr, bool _state) onlyOwner public {
@@ -22,11 +25,24 @@ contract CrowdsaleToken is StandardToken, Ownable {
 
     function sale(address _to, uint256 _value) public onlyCrowdsale returns (bool) {
         require(_to != address(0));
-        require(_value <= balances[owner]);
 
-        balances[owner] = balances[owner].sub(_value);
-        balances[_to] = balances[_to].add(_value);
+        saled.add(_value);
+
+        assert(saled <= balances[owner]);
+
+        waiting[_to] = waiting[_to].add(_value);
         Sale(_to, _value);
         return true;
+    }
+
+    // send waiting tokens to customer's balance
+    function release(address _to) external onlyOwner {
+        require(_to != address(0));
+
+        uint256 val = waiting[_to];
+        waiting[_to] = 0;
+        balances[owner] = balances[owner].sub(val);
+        balances[_to] = balances[_to].add(val);
+        Release(_to);
     }
 }

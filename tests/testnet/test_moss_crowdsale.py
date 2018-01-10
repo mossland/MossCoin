@@ -17,21 +17,21 @@ def test_crowdsale_buy(chain, moss_crowdsale, moss_coin, coin_owner, accounts, r
     w3 = chain.web3
     moss_crowdsale.transact({'from':accounts[1], 'value':w3.toWei(1,'ether')}).buyTokens(accounts[1])
 
-    assert moss_coin.call().balanceOf(accounts[1]) == w3.toWei(1, 'ether') * rate
+    assert moss_coin.call().waiting(accounts[1]) == w3.toWei(1, 'ether') * rate
 
 def test_crowdsale_buy_fallback(chain, moss_crowdsale, moss_coin, accounts, rate):
     w3 = chain.web3
     w3.eth.sendTransaction({'from':accounts[1], 'to':moss_crowdsale.address, 'value':w3.toWei(1,'ether')})
-    assert moss_coin.call().balanceOf(accounts[1]) == w3.toWei(1, 'ether') * rate
+    assert moss_coin.call().waiting(accounts[1]) == w3.toWei(1, 'ether') * rate
 
 def test_crowdsale_min_invest(chain, moss_crowdsale, moss_coin, accounts, min_invest, invest_decimals, rate):
     with pytest.raises(TransactionFailed):
         moss_crowdsale.transact({'from':accounts[1], 'value':min_invest * (10 ** invest_decimals) - 1}).buyTokens(accounts[1])
 
-    assert moss_coin.call().balanceOf(accounts[1]) == 0
+    assert moss_coin.call().waiting(accounts[1]) == 0
 
     moss_crowdsale.transact({'from':accounts[1], 'value':min_invest * (10 ** invest_decimals) }).buyTokens(accounts[1])
-    assert moss_coin.call().balanceOf(accounts[1]) == min_invest * (10 ** invest_decimals)  * rate
+    assert moss_coin.call().waiting(accounts[1]) == min_invest * (10 ** invest_decimals)  * rate
 
 def test_crowdsale_max_invest(chain, moss_crowdsale, moss_coin, accounts, min_invest, max_invest, invest_decimals, rate):
     with pytest.raises(TransactionFailed):
@@ -42,8 +42,8 @@ def test_crowdsale_max_invest(chain, moss_crowdsale, moss_coin, accounts, min_in
     with pytest.raises(TransactionFailed):
         moss_crowdsale.transact({'from':accounts[2], 'value': min_invest * (10 ** invest_decimals)}).buyTokens(accounts[2])
     
-    assert moss_coin.call().balanceOf(accounts[1]) == 0
-    assert moss_coin.call().balanceOf(accounts[2]) == ((max_invest-min_invest) * (10 ** invest_decimals) + 1) * rate
+    assert moss_coin.call().waiting(accounts[1]) == 0
+    assert moss_coin.call().waiting(accounts[2]) == ((max_invest-min_invest) * (10 ** invest_decimals) + 1) * rate
 
 def test_crowdsale_state_change(chain, moss_crowdsale, moss_coin, coin_owner, accounts, min_invest, invest_decimals):
     moss_coin.transact({'from':coin_owner}).setCrowdsale(moss_crowdsale.address, False)
@@ -51,7 +51,7 @@ def test_crowdsale_state_change(chain, moss_crowdsale, moss_coin, coin_owner, ac
     with pytest.raises(TransactionFailed):
         moss_crowdsale.transact({'from':accounts[1], 'value':min_invest * (10 ** invest_decimals) }).buyTokens(accounts[1])
     
-    assert moss_coin.call().balanceOf(accounts[1]) == 0
+    assert moss_coin.call().waiting(accounts[1]) == 0
 
 def test_crowdsale_state_change_only_owner(chain, moss_crowdsale, moss_coin, accounts):
     with pytest.raises(TransactionFailed):
