@@ -58,3 +58,19 @@ def test_crowdsale_state_change_only_owner(chain, moss_crowdsale, moss_coin, acc
         moss_coin.transact({'from':accounts[1]}).setCrowdsale(moss_crowdsale.address, False)
 
     assert moss_coin.call().crowdsales(moss_crowdsale.address)
+
+def test_crowdsale_release(chain, moss_crowdsale, moss_coin, coin_owner, accounts, rate):
+    w3 = chain.web3
+    moss_crowdsale.transact({'from':accounts[1], 'value':w3.toWei(1,'ether')}).buyTokens(accounts[1])
+    moss_coin.transact({'from':coin_owner}).release(accounts[1])
+
+    assert moss_coin.call().balanceOf(accounts[1]) == rate * w3.toWei(1,'ether')
+
+def test_crowdsale_release_only_owner(chain, moss_crowdsale, moss_coin, coin_owner, accounts, rate):
+    w3 = chain.web3
+    moss_crowdsale.transact({'from':accounts[1], 'value':w3.toWei(1,'ether')}).buyTokens(accounts[1])
+
+    with pytest.raises(TransactionFailed):
+        moss_coin.transact({'from':accounts[1]}).release(accounts[1])
+
+    assert moss_coin.call().balanceOf(accounts[1]) == 0
