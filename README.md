@@ -7,15 +7,15 @@
 - [populus](github.com/ethereum/populus)
 
 ## Contracts
-MossCoin is based on Zepplin StandardToken ERC-20 contract.
+MossCoin is a token which is based on Zepplin StandardToken ERC-20 contract.
 
-if you want to know detail information about this project, see our [white paper](moss.land)
+If you want to know more detailed information about this project, visit our [website](moss.land)
 
 ## Installation
 
-1. install [python3](www.python.org) and [solc](solidity.readthedocs.io/en/latest/installing-solidity.html). follow install instruction on link.
+1. Install [python3](www.python.org) and [solc](solidity.readthedocs.io/en/latest/installing-solidity.html). follow install instruction on link.
 
-2. initialize development environment. execute bellow commands on terimal.
+2. Initialize development environment. Execute the command below. 
 ```
 git clone --recursive git@github.com:MossCoin/MossCoin.git
 cd MossCoin
@@ -23,9 +23,9 @@ python3 -m venv venv
 source venv/bin/activate
 pip install --upgrade pip
 pip3 install -r requirements.txt
-``` 
+```
 
-3. test solc and populus are correctly installed:
+3. Test solc and populus are correctly installed:
 ```
 $ solc --version
 solc, the solidity compiler commandline interface
@@ -39,28 +39,28 @@ Options:
   ...
 ```
 
-4. then, initialize private block chain for test:
+4. Then, initialize private block chain for test:
 ```
 bash scripts/init_local_chain.sh
 ```
 
 ## Compile
 
-you can compile solidity code by using `populus compile` command. compile results are saved in `build/contracts.json`.
+You can compile solidity code by using `populus compile` command. Compile results are saved in `build/contracts.json`.
 
 ## Test
 
-if you want to test basic functionality, run `py.test tests/testnet`.
+If you want to test basic functionalities only, run `py.test tests/testnet`.
 
-for test deploying token and more complex functionality, using local private chain.
+To test deploying token and more complexed functionalities, you need local private chain.
 
-first, run local private chain:
+First, run local private chain by using the command below:
 
 ```
 /chains/local/./run_chain.sh
 ```
 
-then, open another terminal and run test:
+Then, open another terminal and run test by using the command below:
 
 ```
 py.test tests/localnet
