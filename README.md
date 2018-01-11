@@ -9,7 +9,7 @@
 ## Contracts
 MossCoin is a token which is based on Zepplin StandardToken ERC-20 contract.
 
-If you want to know more detailed information about this project, visit our [website](moss.land)
+If you want to know more detailed information about this project, visit our [website](http://moss.land)
 
 ## Installation
 
