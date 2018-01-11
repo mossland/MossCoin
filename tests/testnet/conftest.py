@@ -17,7 +17,7 @@ def testernet_start():
     return 1410973381
 
 @pytest.fixture
-def moss_crowdsale(chain, moss_coin, coin_owner, testernet_start, period, min_invest, max_invest, cap, rate):
+def moss_crowdsale_pre(chain, moss_coin, coin_owner, testernet_start, period, min_invest, max_invest, cap, rate):
     start = testernet_start
     end = start + period
 
@@ -27,7 +27,7 @@ def moss_crowdsale(chain, moss_coin, coin_owner, testernet_start, period, min_in
         "from" : coin_owner
     }
 
-    contract, _ = chain.provider.deploy_contract('MossCrowdsale', deploy_args=args, deploy_transaction=transaction)
+    contract, _ = chain.provider.deploy_contract('MossCrowdsalePre', deploy_args=args, deploy_transaction=transaction)
     moss_coin.transact({'from':coin_owner}).setCrowdsale(contract.address, True)
 
     return contract

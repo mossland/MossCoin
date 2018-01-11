@@ -2,7 +2,7 @@ import pytest
 
 @pytest.fixture
 def total_supply():
-    return 30000000
+    return 250000000
 
 @pytest.fixture
 def token_name():
@@ -42,4 +42,4 @@ def cap():
 
 @pytest.fixture
 def rate():
-    return 1200
+    return 5000
