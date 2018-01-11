@@ -1,4 +1,4 @@
-<p align="center"> <img src="/img/image.png"> </p>
+<p align="center"> <img src="/img/logo.png"> </p>
 
 ## Requirements
 - OSX or linux
