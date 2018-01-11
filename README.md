@@ -1,5 +1,10 @@
 <p align="center"> <img src="/img/logo.png"> </p>
-<p align="center"> <img src="https://travis-ci.org/realityreflection/MossCoin.svg?branch=master"> </p>
+<p align="center">
+  <img src="https://travis-ci.org/realityreflection/MossCoin.svg?branch=master">
+  <a href="https://twitter.com/intent/follow?screen_name=TheMossLand">
+    <img src="https://img.shields.io/twitter/follow/TheMossLand.svg?style=social&label=Follow" alt="follow on Twitter">
+  </a>
+</p>
 
 ## Requirements
 - OSX or linux
