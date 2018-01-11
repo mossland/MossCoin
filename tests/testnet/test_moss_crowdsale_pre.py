@@ -25,7 +25,8 @@ def presale_bonus(chain, wei, presale_bonus_ether, presale_bonus_rate):
 def presale_token(chain, wei, presale_bonus_ether, presale_bonus_rate, rate):
     return wei * rate * presale_bonus(chain, wei, presale_bonus_ether, presale_bonus_rate) // 100
 
-def test_crowdsale_initialized(moss_crowdsale_pre, moss_coin, coin_owner, period, min_invest, max_invest, cap, rate, token_decimals, invest_decimals):
+def test_crowdsale_initialized(chain, moss_crowdsale_pre, moss_coin, coin_owner, period, min_invest, max_invest, cap, rate, token_decimals, invest_decimals, presale_bonus_ether, presale_bonus_rate):
+    w3 = chain.web3
     assert moss_crowdsale_pre.call().endTime() - moss_crowdsale_pre.call().startTime() == period
     assert moss_crowdsale_pre.call().minInvest() == (min_invest * (10 ** invest_decimals))
     assert moss_crowdsale_pre.call().maxInvest() == (max_invest * (10 ** invest_decimals))
@@ -33,6 +34,16 @@ def test_crowdsale_initialized(moss_crowdsale_pre, moss_coin, coin_owner, period
     assert moss_crowdsale_pre.call().weiRaised() == 0
     assert moss_crowdsale_pre.call().token().lower() == moss_coin.address
     assert moss_crowdsale_pre.call().wallet() == coin_owner
+
+    for i in range(0, len(presale_bonus_ether)):
+        assert moss_crowdsale_pre.call().values(i) == presale_bonus_ether[i] * w3.toWei(1, 'ether')
+    
+    assert moss_crowdsale_pre.call().values(len(presale_bonus_ether)) == moss_crowdsale_pre.call().maxInvest() 
+    
+    for i in range(0, len(presale_bonus_rate)):
+        assert moss_crowdsale_pre.call().bonus(0, i) == presale_bonus_rate[i]
+
+    assert moss_crowdsale_pre.call().ends(0) == moss_crowdsale_pre.call().endTime()
 
 def test_crowdsale_buy(chain, moss_crowdsale_pre, moss_coin, coin_owner, accounts, rate, presale_bonus_ether, presale_bonus_rate):
     w3 = chain.web3

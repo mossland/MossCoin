@@ -5,9 +5,9 @@ import './crowdsale/CappedCrowdsale.sol';
 
 //pre ico crowdsale contract
 contract MossCrowdsale is CappedCrowdsale {
-    uint256[5][4] bonus;
-    uint256[5] values; // bonus by send ether amount criteria
-    uint256[4] ends; // bonus by ico timing criteria
+    uint256[5][4] public bonus;
+    uint256[5] public values; // bonus by send ether amount criteria
+    uint256[4] public ends; // bonus by ico timing criteria
 
     function MossCrowdsale(uint256 _startTime, uint256 _endTime, uint256 _rate, uint256 _capEther, uint256 _minInvestFinney, uint256 _maxInvestFinney, address _wallet, address _token) public
         CappedCrowdsale(_capEther)
