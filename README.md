@@ -1,5 +1,6 @@
 <p align="center"> <img src="/img/logo.png"> </p>
-<p align="center"> <img src="/media/sf_MossCoin/mosscoin_logo.png"> </p>
+<p align="center"> <img src="https://travis-ci.org/realityreflection/MossCoin.svg?branch=master"> </p>
+
 ## Requirements
 - OSX or linux
 - [python3](www.python.org)
