@@ -7,14 +7,14 @@ cache:
   - pip3: true
 
 before_install:
-  - sudo add-apt-repository -y ppa:ethereum/ethereum
-  - sudo apt-get update
+  - travis_retry sudo add-apt-repository -y ppa:ethereum/ethereum
+  - travis_retry sudo apt-get update
 
 install:
-  - sudo apt-get install solc
-  - sudo apt-get install libssl-dev
-  - pip install --upgrade pip
-  - pip3 install -r requirements.txt
+  - travis_retry sudo apt-get install solc
+  - travis_retry sudo apt-get install libssl-dev
+  - travis_retry pip install --upgrade pip
+  - travis_retry pip3 install -r requirements.txt
 
 script: 
   - populus compile
