@@ -16,14 +16,16 @@ contract MossCrowdsale is CappedCrowdsale {
         values = [5 * 1 ether, 10 * 1 ether, 25 * 1 ether, 75 * 1 ether, _maxInvestFinney * 1 finney];
     }
 
-    function getTokens(uint256 _wei) public view returns (uint256) {
+    function getTokens(uint256 _wei, uint256 _time) public view returns (uint256) {
+        require(_time >= startTime && _time <= endTime);
+
         for (uint i = 0; i < values.length; ++i) {
             if (_wei >= values[i]) {
                 continue;
             }
 
             for (uint j = 0; j < ends.length; ++i) {
-                if (now >= ends[j]) {
+                if (_time >= ends[j]) {
                     continue;
                 }
 

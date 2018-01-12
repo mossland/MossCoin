@@ -48,7 +48,7 @@ contract Crowdsale {
         require(validPurchase(beneficiary));
 
         uint256 weiAmount = msg.value;
-        uint256 tokens = getTokens(weiAmount);
+        uint256 tokens = getTokens(weiAmount, now);
 
         weiRaised = weiRaised.add(weiAmount);
         balanceOf[beneficiary] = balanceOf[beneficiary].add(weiAmount);
@@ -73,7 +73,7 @@ contract Crowdsale {
         return now > endTime;
     }
 
-    function getTokens(uint256 _wei) public view returns (uint256) {
+    function getTokens(uint256 _wei, uint256 _time) public view returns (uint256) {
         return _wei.mul(rate);
     }
 }

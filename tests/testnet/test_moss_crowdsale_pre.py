@@ -17,14 +17,14 @@ def test_bonus_property(presale_bonus_ether, presale_bonus_rate):
 
 def test_bonus_rating(chain, presale_bonus_ether, presale_bonus_rate, rate):
     w3 = chain.web3
-    assert presale_token_amount(chain, 5 * w3.toWei(1, 'ether') - 1, presale_bonus_ether, presale_bonus_rate, rate) == 32500000000000000000000 - 6500
-    assert presale_token_amount(chain, 5 * w3.toWei(1, 'ether'), presale_bonus_ether, presale_bonus_rate, rate) == 33750000000000000000000
+    assert presale_token_amount(chain, 5 * w3.toWei(1, 'ether') - 1,  presale_bonus_ether, presale_bonus_rate, rate) == 32500000000000000000000 - 6500
+    assert presale_token_amount(chain, 5 * w3.toWei(1, 'ether'),      presale_bonus_ether, presale_bonus_rate, rate) == 33750000000000000000000
     assert presale_token_amount(chain, 10 * w3.toWei(1, 'ether') - 1, presale_bonus_ether, presale_bonus_rate, rate) == 67500000000000000000000 - 6750
-    assert presale_token_amount(chain, 10 * w3.toWei(1, 'ether'), presale_bonus_ether, presale_bonus_rate, rate) == 70000000000000000000000
+    assert presale_token_amount(chain, 10 * w3.toWei(1, 'ether'),     presale_bonus_ether, presale_bonus_rate, rate) == 70000000000000000000000
     assert presale_token_amount(chain, 25 * w3.toWei(1, 'ether') - 1, presale_bonus_ether, presale_bonus_rate, rate) == 175000000000000000000000 - 7000
-    assert presale_token_amount(chain, 25 * w3.toWei(1, 'ether'), presale_bonus_ether, presale_bonus_rate, rate) == 181250000000000000000000
+    assert presale_token_amount(chain, 25 * w3.toWei(1, 'ether'),     presale_bonus_ether, presale_bonus_rate, rate) == 181250000000000000000000
     assert presale_token_amount(chain, 75 * w3.toWei(1, 'ether') - 1, presale_bonus_ether, presale_bonus_rate, rate) == 543750000000000000000000 - 7250
-    assert presale_token_amount(chain, 75 * w3.toWei(1, 'ether'), presale_bonus_ether, presale_bonus_rate, rate) == 562500000000000000000000
+    assert presale_token_amount(chain, 75 * w3.toWei(1, 'ether'),     presale_bonus_ether, presale_bonus_rate, rate) == 562500000000000000000000
 
 def presale_bonus(chain, wei, presale_bonus_ether, presale_bonus_rate):
     for i in range(0, 4):

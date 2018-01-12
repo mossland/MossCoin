@@ -37,10 +37,6 @@ def main_bonus_change_period():
     return 7*24*60*60 # 1 week
 
 @pytest.fixture
-def period():
-    return 10000
-
-@pytest.fixture
 def min_invest():
     return 100
 
