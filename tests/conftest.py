@@ -25,6 +25,18 @@ def coin_owner(accounts):
     return accounts[0]
 
 @pytest.fixture
+def pre_period():
+    return 2*7*24*60*60 # 2 weeks
+
+@pytest.fixture
+def main_period():
+    return 4*7*24*60*60 # 4 weeks
+
+@pytest.fixture
+def main_bonus_change_period():
+    return 7*24*60*60 # 1 week
+
+@pytest.fixture
 def period():
     return 10000
 
