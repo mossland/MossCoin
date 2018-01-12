@@ -19,3 +19,8 @@ install:
 script: 
   - populus compile
   - py.test
+
+notifications:
+  email:
+    on_success: never
+    on_failure: always
