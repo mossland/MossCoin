@@ -54,7 +54,7 @@ def test_crowdsale_initialized(chain, moss_crowdsale_pre, moss_coin, coin_owner,
     for i in range(0, len(presale_bonus_rate)):
         assert moss_crowdsale_pre.call().bonus(0, i) == presale_bonus_rate[i]
 
-    assert moss_crowdsale_pre.call().ends(0) == moss_crowdsale_pre.call().endTime()
+    assert moss_crowdsale_pre.call().ends(0) == moss_crowdsale_pre.call().endTime() + 1
 
 def test_crowdsale_buy(chain, moss_crowdsale_pre, moss_coin, coin_owner, accounts, rate, presale_bonus_ether, presale_bonus_rate):
     w3 = chain.web3

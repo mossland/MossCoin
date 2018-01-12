@@ -13,8 +13,10 @@ def moss_coin(chain, coin_owner, total_supply):
     return contract
 
 @pytest.fixture
-def testernet_start():
-    return 1410973381
+def testernet_start(chain):
+    block = chain.web3.eth.getBlock('latest')
+    next_block = chain.web3.eth.getBlock(block.number+1)
+    return next_block['timestamp']
 
 @pytest.fixture
 def moss_crowdsale_pre(chain, moss_coin, coin_owner, testernet_start, pre_period, min_invest, max_invest, cap, rate):
