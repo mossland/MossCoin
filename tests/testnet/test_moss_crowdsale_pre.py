@@ -15,6 +15,17 @@ def presale_bonus_rate():
 def test_bonus_property(presale_bonus_ether, presale_bonus_rate):
     assert len(presale_bonus_ether) + 1 == len(presale_bonus_rate)
 
+def test_bonus_rating(chain, presale_bonus_ether, presale_bonus_rate, rate):
+    w3 = chain.web3
+    assert presale_token(chain, 5 * w3.toWei(1, 'ether') - 1, presale_bonus_ether, presale_bonus_rate, rate) == 32500000000000000000000 - 6500
+    assert presale_token(chain, 5 * w3.toWei(1, 'ether'), presale_bonus_ether, presale_bonus_rate, rate) == 33750000000000000000000
+    assert presale_token(chain, 10 * w3.toWei(1, 'ether') - 1, presale_bonus_ether, presale_bonus_rate, rate) == 67500000000000000000000 - 6750
+    assert presale_token(chain, 10 * w3.toWei(1, 'ether'), presale_bonus_ether, presale_bonus_rate, rate) == 70000000000000000000000
+    assert presale_token(chain, 25 * w3.toWei(1, 'ether') - 1, presale_bonus_ether, presale_bonus_rate, rate) == 175000000000000000000000 - 7000
+    assert presale_token(chain, 25 * w3.toWei(1, 'ether'), presale_bonus_ether, presale_bonus_rate, rate) == 181250000000000000000000
+    assert presale_token(chain, 75 * w3.toWei(1, 'ether') - 1, presale_bonus_ether, presale_bonus_rate, rate) == 543750000000000000000000 - 7250
+    assert presale_token(chain, 75 * w3.toWei(1, 'ether'), presale_bonus_ether, presale_bonus_rate, rate) == 562500000000000000000000
+
 def presale_bonus(chain, wei, presale_bonus_ether, presale_bonus_rate):
     for i in range(0, 4):
         if wei < presale_bonus_ether[i] * chain.web3.toWei(1,'ether'):
@@ -113,12 +124,12 @@ def test_crowdsale_release_only_owner(chain, moss_crowdsale_pre, moss_coin, coin
 def test_crowdsale_bonus_rating(chain, moss_crowdsale_pre, moss_coin, coin_owner, accounts, rate, presale_bonus_ether, presale_bonus_rate):
     w3 = chain.web3
     for criteria in presale_bonus_ether:
+        moss_crowdsale_pre.transact({'from':accounts[1], 'value':w3.toWei(1, 'ether') * criteria - 1}).buyTokens(accounts[1])
+
+        assert moss_coin.call().waiting(accounts[1]) == presale_token(chain, w3.toWei(1,'ether') * criteria - 1, presale_bonus_ether, presale_bonus_rate, rate)
+        moss_coin.transact({'from':coin_owner}).release(accounts[1])
+
         moss_crowdsale_pre.transact({'from':accounts[1], 'value':w3.toWei(1, 'ether') * criteria}).buyTokens(accounts[1])
 
         assert moss_coin.call().waiting(accounts[1]) == presale_token(chain, w3.toWei(1,'ether') * criteria, presale_bonus_ether, presale_bonus_rate, rate)
-        moss_coin.transact({'from':coin_owner}).release(accounts[1])
-
-        moss_crowdsale_pre.transact({'from':accounts[1], 'value':w3.toWei(1, 'ether') * criteria + 1}).buyTokens(accounts[1])
-
-        assert moss_coin.call().waiting(accounts[1]) == presale_token(chain, w3.toWei(1,'ether') * criteria + 1, presale_bonus_ether, presale_bonus_rate, rate)
         moss_coin.transact({'from':coin_owner}).release(accounts[1])
