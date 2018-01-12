@@ -10,7 +10,7 @@ def presale_bonus_ether():
 
 @pytest.fixture
 def presale_bonus_rate():
-    return [130, 135, 140, 145, 150]
+    return [1300, 1350, 1400, 1450, 1500]
 
 def test_bonus_property(presale_bonus_ether, presale_bonus_rate):
     assert len(presale_bonus_ether) + 1 == len(presale_bonus_rate)
@@ -23,7 +23,7 @@ def presale_bonus(chain, wei, presale_bonus_ether, presale_bonus_rate):
     return presale_bonus_rate[-1]
 
 def presale_token(chain, wei, presale_bonus_ether, presale_bonus_rate, rate):
-    return wei * rate * presale_bonus(chain, wei, presale_bonus_ether, presale_bonus_rate) // 100
+    return wei * rate * presale_bonus(chain, wei, presale_bonus_ether, presale_bonus_rate) // 1000
 
 def test_crowdsale_initialized(chain, moss_crowdsale_pre, moss_coin, coin_owner, period, min_invest, max_invest, cap, rate, token_decimals, invest_decimals, presale_bonus_ether, presale_bonus_rate):
     w3 = chain.web3

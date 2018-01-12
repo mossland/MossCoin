@@ -27,7 +27,7 @@ contract MossCrowdsale is CappedCrowdsale {
                     continue;
                 }
 
-                return _wei * rate * bonus[j][i] / 100;
+                return _wei * rate * bonus[j][i] / 1000;
             }
         }
 
@@ -41,7 +41,7 @@ contract MossCrowdsalePre is MossCrowdsale {
         MossCrowdsale(_startTime, _endTime, _rate, _capEther, _minInvestFinney, _maxInvestFinney, _wallet, _token)
     {
         ends = [_endTime, _endTime, _endTime, _endTime];
-        bonus[0] = [130, 135, 140, 145, 150];
+        bonus[0] = [1300, 1350, 1400, 1450, 1500];
     }
 }
 
@@ -50,9 +50,9 @@ contract MossCrowdsaleMain is MossCrowdsale {
         MossCrowdsale(_startTime, _endTime, _rate, _capEther, _minInvestFinney, _maxInvestFinney, _wallet, _token)
     {
         ends = [_end1, _end2, _end3, _endTime];
-        bonus[0] = [115, 120, 125, 130, 135];
-        bonus[1] = [110, 116, 121, 126, 131];
-        bonus[2] = [105, 111, 117, 122, 127];
-        bonus[3] = [100, 106, 112, 118, 123];
+        bonus[0] = [1250, 1300, 1400, 1450, 1500];
+        bonus[1] = [1150, 1200, 1250, 1350, 1400];
+        bonus[2] = [1050, 1075, 1125, 1250, 1300];
+        bonus[3] = [1025, 1025, 1050, 1100, 1200];
     }
 }
