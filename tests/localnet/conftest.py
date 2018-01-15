@@ -22,14 +22,41 @@ def moss_coin(local_chain, owner, total_supply):
 
     return coin
 
-def deploy_crowdsale(local_chain, owner, moss_coin, start, period, min_invest, max_invest, cap, rate):
+@pytest.fixture(scope='session')
+def local_accounts(local_chain):
+    w3 = local_chain.web3
+    while len(w3.personal.listAccounts) < 10:
+        account = w3.personal.newAccount('testaccountpass')
+        w3.personal.unlockAccount(account, 'testaccountpass')
+    
+    for account in w3.personal.listAccounts:
+        if account == w3.eth.coinbase.lower():
+            continue
+
+        w3.eth.sendTransaction({'from':w3.eth.coinbase, 'to':account, 'value' : w3.toWei(100, 'ether') - w3.eth.getBalance(account) })
+
+    return w3.personal.listAccounts
+
+def deploy_crowdsale_pre(local_chain, owner, moss_coin, start, end, min_invest, max_invest, cap, rate):
     args = [start, end, rate, cap, min_invest, max_invest, coin_owner, moss_coin.address]
 
     transaction = {
-        "from" : owner
+        'from' : owner
     }
 
-    contract, _ = local_chain.provider.deploy_contract('MossCrowdsale', deploy_args=args, deploy_transaction=transaction)
+    contract, _ = local_chain.provider.deploy_contract('MossCrowdsalePre', deploy_args=args, deploy_transaction=transaction)
+    moss_coin.transact({'from':coin_owner}).setCrowdsale(contract.address, True)
+
+    return contract
+
+def deploy_crowdsale_main(local_chain, owner, moss_coin, start, week, end, min_invest, max_invest, cap, rate):
+    args = [start, start + week, start + week * 2, start + week * 3, end, rate, cap, min_invest, max_invest, coin_owner, moss_coin.address]
+
+    transaction = {
+        'from' : owner
+    }
+
+    contract, _ = local_chain.provider.deploy_contract('MossCrowdsaleMain', deploy_args=args, deploy_transaction=transaction)
     moss_coin.transact({'from':coin_owner}).setCrowdsale(contract.address, True)
 
     return contract

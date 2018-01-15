@@ -13,6 +13,10 @@ def moss_coin(chain, coin_owner, total_supply):
     return contract
 
 @pytest.fixture
+def coin_owner(accounts):
+    return accounts[0]
+
+@pytest.fixture
 def testernet_start(chain):
     block = chain.web3.eth.getBlock('latest')
     next_block = chain.web3.eth.getBlock(block.number+1)

@@ -18,6 +18,7 @@ install:
 
 script: 
   - populus compile
+  - chains/local/./run_chain.sh &
   - py.test
 
 notifications:
