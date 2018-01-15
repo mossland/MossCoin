@@ -2,7 +2,7 @@ import pytest
 
 @pytest.fixture(scope='session')
 def total_supply():
-    return 250000000
+    return 500000000
 
 @pytest.fixture(scope='session')
 def token_name():
