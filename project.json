@@ -2,7 +2,10 @@
     "version" : "7",
     "compilation" : {
         "contracts_source_dirs" : [ "./contracts" ],
-        "import_remappings" : []
+        "settings": {
+            "optimize" : true,
+            "import_remappings" : []
+        }
     },
     "chains" : {
         "local" : {
