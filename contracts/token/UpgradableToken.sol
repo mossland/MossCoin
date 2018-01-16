@@ -21,9 +21,9 @@ contract UpgradableToken is StandardToken, Ownable {
         require(_value != 0);
         require(_value <= balances[msg.sender]);
 
-        balances[msg.sender] -= _value;
-        totalSupply -= _value;
-        totalUpgraded += _value;
+        balances[msg.sender] = balances[msg.sender].sub(_value);
+        totalSupply = totalSupply.sub(_value);
+        totalUpgraded = totalUpgraded.add(_value);
         UpgradeAgent(upgradeAgent).upgradeFrom(msg.sender, _value);
         Upgrade(msg.sender, upgradeAgent, _value);
     }
