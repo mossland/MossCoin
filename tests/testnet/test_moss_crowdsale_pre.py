@@ -133,3 +133,13 @@ def test_crowdsale_bonus_rating(chain, moss_crowdsale_pre, moss_coin, coin_owner
 
         assert moss_coin.call().waiting(accounts[1]) == presale_token_amount(chain, w3.toWei(1,'ether') * criteria, presale_bonus_ether, presale_bonus_rate, rate)
         moss_coin.transact({'from':coin_owner}).release(accounts[1])
+
+def test_after_crowdsale_end(chain, moss_crowdsale_pre, moss_coin, coin_owner, accounts, rate):
+    w3 = chain.web3
+    while moss_crowdsale_pre.call().endTime() >= chain.web3.eth.getBlock('latest').timestamp:
+        chain.rpc_methods.evm_mine()
+
+    with pytest.raises(TransactionFailed):
+        moss_crowdsale_pre.transact({'from':accounts[1], 'value':w3.toWei(1,'ether')}).buyTokens(accounts[1])
+    
+    assert moss_coin.call().waiting(accounts[1]) == 0

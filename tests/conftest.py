@@ -22,7 +22,7 @@ def invest_decimals(token_decimals):
 
 @pytest.fixture(scope='session')
 def pre_period():
-    return 2*7*24*60*60 # 2 weeks
+    return 600 # for test, real : 2*7*24*60*60 # 2 weeks
 
 @pytest.fixture(scope='session')
 def main_period():
