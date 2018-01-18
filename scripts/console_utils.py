@@ -29,14 +29,14 @@ def coin(chain, force_deploy = False):
 def get_account(chain, idx):
     w3 = chain.web3
     while len(w3.personal.listAccounts) <= idx:
-        account = w3.personal.newAccount('testpass')
-        w3.personal.unlockAccount(account, 'testpass')
+        account = w3.personal.newAccount(password)
+        w3.personal.unlockAccount(account, password)
 
     return w3.personal.listAccounts[idx]
 
 def sendEther(chain, from_addr, to_addr, amount):
     w3 = chain.web3
-    w3.eth.sendTransaction({'from':from_addr, 'to':to_addr 'value' : amount })
+    w3.eth.sendTransaction({'from' : from_addr, 'to' : to_addr, 'value' : amount })
 
 def crowdsale_pre(chain, period, cap, force_deploy = False):
     start = int(time.time()) + 60
