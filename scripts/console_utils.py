@@ -7,7 +7,6 @@ password = 'testpass'
 
 with proj.get_chain('rinkeby') as rinkeby:
     rw3 = rinkeby.web3
-    rw3.personal.unlockAccount(rw3.eth.coinbase, password)
 
 with proj.get_chain('local') as local:
     lw3 = local.web3
@@ -30,7 +29,6 @@ def get_account(chain, idx):
     w3 = chain.web3
     while len(w3.personal.listAccounts) <= idx:
         account = w3.personal.newAccount(password)
-        w3.personal.unlockAccount(account, password)
 
     return w3.personal.listAccounts[idx]
 
