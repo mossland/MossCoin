@@ -49,7 +49,7 @@ def test_crowdsale_initialized(chain, moss_crowdsale_pre, moss_coin, coin_owner,
     for i in range(0, len(presale_bonus_ether)):
         assert moss_crowdsale_pre.call().values(i) == presale_bonus_ether[i] * w3.toWei(1, 'ether')
     
-    assert moss_crowdsale_pre.call().values(len(presale_bonus_ether)) == moss_crowdsale_pre.call().maxInvest() 
+    assert moss_crowdsale_pre.call().values(len(presale_bonus_ether)) == moss_crowdsale_pre.call().maxInvest() + 1
     
     for i in range(0, len(presale_bonus_rate)):
         assert moss_crowdsale_pre.call().bonus(0, i) == presale_bonus_rate[i]
@@ -79,6 +79,8 @@ def test_crowdsale_min_invest(chain, moss_crowdsale_pre, moss_coin, accounts, mi
 def test_crowdsale_max_invest(chain, moss_crowdsale_pre, moss_coin, accounts, min_invest, max_invest, invest_decimals, rate, presale_bonus_ether, presale_bonus_rate):
     with pytest.raises(TransactionFailed):
         moss_crowdsale_pre.transact({'from':accounts[1], 'value':max_invest * (10 ** invest_decimals) + 1}).buyTokens(accounts[1])
+
+    moss_crowdsale_pre.transact({'from':accounts[1], 'value':max_invest * (10 ** invest_decimals)}).buyTokens(accounts[1])
     
     # buy max_invest - min_invest + 1
     moss_crowdsale_pre.transact({'from':accounts[2], 'value':(max_invest-min_invest) * (10 ** invest_decimals) + 1}).buyTokens(accounts[2])
@@ -87,7 +89,7 @@ def test_crowdsale_max_invest(chain, moss_crowdsale_pre, moss_coin, accounts, mi
     with pytest.raises(TransactionFailed):
         moss_crowdsale_pre.transact({'from':accounts[2], 'value': min_invest * (10 ** invest_decimals)}).buyTokens(accounts[2])
     
-    assert moss_coin.call().waiting(accounts[1]) == 0
+    assert moss_coin.call().waiting(accounts[1]) == presale_token_amount(chain, max_invest * (10 ** invest_decimals), presale_bonus_ether, presale_bonus_rate, rate)
     assert moss_coin.call().waiting(accounts[2]) == presale_token_amount(chain, (max_invest-min_invest) * (10 ** invest_decimals) + 1, presale_bonus_ether, presale_bonus_rate, rate)
 
 def test_crowdsale_state_change(chain, moss_crowdsale_pre, moss_coin, coin_owner, accounts, min_invest, invest_decimals):
@@ -143,3 +145,13 @@ def test_after_crowdsale_end(chain, moss_crowdsale_pre, moss_coin, coin_owner, a
         moss_crowdsale_pre.transact({'from':accounts[1], 'value':w3.toWei(1,'ether')}).buyTokens(accounts[1])
     
     assert moss_coin.call().waiting(accounts[1]) == 0
+
+def test_over_cap(chain, moss_crowdsale_pre, moss_coin, coin_owner, accounts, rate, max_invest, invest_decimals):
+    w3 = chain.web3
+
+    moss_crowdsale_pre.transact({'from':accounts[1], 'value': max_invest * (10 ** invest_decimals)}).buyTokens(accounts[1])
+    moss_crowdsale_pre.transact({'from':accounts[2], 'value': max_invest * (10 ** invest_decimals)}).buyTokens(accounts[2])
+    moss_crowdsale_pre.transact({'from':accounts[3], 'value': max_invest * (10 ** invest_decimals)}).buyTokens(accounts[3])
+
+    with pytest.raises(TransactionFailed):
+        moss_crowdsale_pre.transact({'from':accounts[4], 'value': max_invest * (10 ** invest_decimals)}).buyTokens(accounts[4])

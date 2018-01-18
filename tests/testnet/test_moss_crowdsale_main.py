@@ -135,7 +135,7 @@ def test_main_crowdsale_initialized(chain, moss_crowdsale_main, moss_coin, coin_
     for i in range(0, len(bonus_ether)):
         assert moss_crowdsale_main.call().values(i) == bonus_ether[i] * w3.toWei(1, 'ether')
     
-    assert moss_crowdsale_main.call().values(len(bonus_ether)) == moss_crowdsale_main.call().maxInvest() 
+    assert moss_crowdsale_main.call().values(len(bonus_ether)) == moss_crowdsale_main.call().maxInvest() + 1
     
     for i in range(0, len(bonus_rate)):
         for j in range(0, len(bonus_rate[i])):

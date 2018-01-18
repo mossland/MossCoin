@@ -13,7 +13,7 @@ contract MossCrowdsale is CappedCrowdsale {
         CappedCrowdsale(_capEther)
         Crowdsale(_startTime, _endTime, _rate, _minInvestFinney, _maxInvestFinney, _wallet, _token) 
     {
-        values = [5 * 1 ether, 10 * 1 ether, 25 * 1 ether, 75 * 1 ether, _maxInvestFinney * 1 finney];
+        values = [5 * 1 ether, 10 * 1 ether, 25 * 1 ether, 75 * 1 ether, _maxInvestFinney * 1 finney + 1];
     }
 
     function getTokens(uint256 _wei, uint256 _time) public view returns (uint256) {

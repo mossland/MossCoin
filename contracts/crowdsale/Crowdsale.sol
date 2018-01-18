@@ -65,7 +65,7 @@ contract Crowdsale {
 
     function validPurchase(address beneficiary) internal view returns (bool) {
         bool withinPeriod = now >= startTime && now <= endTime;
-        bool validCondition = beneficiary != 0x0 && msg.value >= minInvest && balanceOf[beneficiary] + msg.value <= maxInvest;
+        bool validCondition = beneficiary != 0x0 && msg.value >= minInvest && balanceOf[beneficiary].add(msg.value) <= maxInvest;
         return withinPeriod && validCondition;
     }
 
