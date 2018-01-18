@@ -53,6 +53,30 @@
                     }
                 }
             }
+        },
+        "mainnet" : {
+            "chain" : {
+                "class" : "populus.chain.MainnetChain"
+            },
+            "web3" : {
+                "provider" : {
+                    "class" : "web3.providers.rpc.HTTPProvider",
+                    "settings" : {
+                        "endpoint_uri" : "http://localhost:8545",
+                        "request_kwargs" : {
+                            "timeout" : 300
+                        }
+                    }
+                }
+            },
+            "contracts" : {
+                "backends" : {
+                    "JSONFile" : { "$ref" : "contracts.backends.JSONFile" },
+                    "ProjectContracts" : {
+                        "$ref" : "contracts.backends.ProjectContracts"
+                    }
+                }
+            }
         }
     }
 }
