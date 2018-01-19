@@ -7,7 +7,7 @@ contract CrowdsaleToken is StandardToken, Ownable {
     using SafeMath for uint256;
     mapping (address => bool) public crowdsales;
     mapping (address => uint256) public waiting;
-    uint256 saled;
+    uint256 public saled;
 
     event Sale(address to, uint256 value);
     event Release(address to);
@@ -26,11 +26,9 @@ contract CrowdsaleToken is StandardToken, Ownable {
 
     function sale(address _to, uint256 _value) public onlyCrowdsale returns (bool) {
         require(_to != address(0));
+        assert(saled.add(_value) <= balances[owner]);
 
-        saled.add(_value);
-
-        assert(saled <= balances[owner]);
-
+        saled = saled.add(_value);
         waiting[_to] = waiting[_to].add(_value);
         Sale(_to, _value);
         return true;
@@ -51,6 +49,7 @@ contract CrowdsaleToken is StandardToken, Ownable {
     function reject(address _to) external onlyOwner {
         require(_to != address(0));
 
+        saled = saled.sub(waiting[_to]);
         waiting[_to] = 0;
 
         Reject(_to);
