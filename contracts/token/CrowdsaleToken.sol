@@ -11,6 +11,7 @@ contract CrowdsaleToken is StandardToken, Ownable {
 
     event Sale(address to, uint256 value);
     event Release(address to);
+    event Reject(address to);
     event SetCrowdsale(address addr, bool state);
 
     function setCrowdsale(address _addr, bool _state) onlyOwner public {
@@ -44,5 +45,14 @@ contract CrowdsaleToken is StandardToken, Ownable {
         balances[owner] = balances[owner].sub(val);
         balances[_to] = balances[_to].add(val);
         Release(_to);
+    }
+
+    // reject waiting token
+    function reject(address _to) external onlyOwner {
+        require(_to != address(0));
+
+        waiting[_to] = 0;
+
+        Reject(_to);
     }
 }

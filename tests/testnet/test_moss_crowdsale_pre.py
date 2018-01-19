@@ -111,16 +111,37 @@ def test_crowdsale_release(chain, moss_crowdsale_pre, moss_coin, coin_owner, acc
     moss_crowdsale_pre.transact({'from':accounts[1], 'value':w3.toWei(1,'ether')}).buyTokens(accounts[1])
     moss_coin.transact({'from':coin_owner}).release(accounts[1])
 
+    assert moss_coin.call().waiting(accounts[1]) == 0
     assert moss_coin.call().balanceOf(accounts[1]) == presale_token_amount(chain, w3.toWei(1,'ether'), presale_bonus_ether, presale_bonus_rate, rate)
 
-def test_crowdsale_release_only_owner(chain, moss_crowdsale_pre, moss_coin, coin_owner, accounts, rate):
+def test_crowdsale_release_only_owner(chain, moss_crowdsale_pre, moss_coin, coin_owner, accounts, rate, presale_bonus_ether, presale_bonus_rate):
     w3 = chain.web3
     moss_crowdsale_pre.transact({'from':accounts[1], 'value':w3.toWei(1,'ether')}).buyTokens(accounts[1])
 
     with pytest.raises(TransactionFailed):
         moss_coin.transact({'from':accounts[1]}).release(accounts[1])
 
+    assert moss_coin.call().waiting(accounts[1]) == presale_token_amount(chain, w3.toWei(1,'ether'), presale_bonus_ether, presale_bonus_rate, rate)
     assert moss_coin.call().balanceOf(accounts[1]) == 0
+
+def test_crowdsale_reject(chain, moss_crowdsale_pre, moss_coin, coin_owner, accounts, rate, presale_bonus_ether, presale_bonus_rate):
+    w3 = chain.web3
+    moss_crowdsale_pre.transact({'from':accounts[1], 'value':w3.toWei(1,'ether')}).buyTokens(accounts[1])
+    moss_coin.transact({'from':coin_owner}).reject(accounts[1])
+
+    assert moss_coin.call().waiting(accounts[1]) == 0
+    assert moss_coin.call().balanceOf(accounts[1]) == 0
+
+def test_crowdsale_reject_only_owner(chain, moss_crowdsale_pre, moss_coin, coin_owner, accounts, rate, presale_bonus_ether, presale_bonus_rate):
+    w3 = chain.web3
+    moss_crowdsale_pre.transact({'from':accounts[1], 'value':w3.toWei(1,'ether')}).buyTokens(accounts[1])
+
+    with pytest.raises(TransactionFailed):
+        moss_coin.transact({'from':accounts[1]}).reject(accounts[1])
+
+    assert moss_coin.call().waiting(accounts[1]) == presale_token_amount(chain, w3.toWei(1,'ether'), presale_bonus_ether, presale_bonus_rate, rate)
+    assert moss_coin.call().balanceOf(accounts[1]) == 0
+
 
 # bonus rating test
 def test_crowdsale_bonus_rating(chain, moss_crowdsale_pre, moss_coin, coin_owner, accounts, rate, presale_bonus_ether, presale_bonus_rate):
