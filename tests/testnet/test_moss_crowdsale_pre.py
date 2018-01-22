@@ -179,3 +179,14 @@ def test_over_cap(chain, moss_crowdsale_pre, moss_coin, coin_owner, accounts, ra
 
     with pytest.raises(TransactionFailed):
         moss_crowdsale_pre.transact({'from':accounts[4], 'value': max_invest * (10 ** invest_decimals)}).buyTokens(accounts[4])
+
+def test_change_rate(chain, moss_crowdsale_pre, coin_owner):
+    moss_crowdsale_pre.transact({'from':coin_owner}).changeRate(1000)
+
+    assert moss_crowdsale_pre.call().rate() == 1000
+
+def test_change_rate_owner_only(chain, moss_crowdsale_pre, accounts, rate):
+    with pytest.raises(TransactionFailed):
+        moss_crowdsale_pre.transact({'from':accounts[1]}).changeRate(1000)
+    
+    assert moss_crowdsale_pre.call().rate() == rate

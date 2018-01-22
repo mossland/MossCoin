@@ -146,7 +146,6 @@ def test_main_crowdsale_initialized(chain, moss_crowdsale_main, moss_coin, coin_
     assert moss_crowdsale_main.call().ends(2) == moss_crowdsale_main.call().startTime() + main_bonus_change_period * 3
     assert moss_crowdsale_main.call().ends(3) == moss_crowdsale_main.call().endTime() + 1
 
-
 def test_main_crowdsale_buy(chain, moss_crowdsale_main, moss_coin, testernet_start, main_bonus_change_period, coin_owner, accounts, rate, bonus_ether, bonus_rate):
     w3 = chain.web3
     moss_crowdsale_main.transact({'from':accounts[1], 'value':w3.toWei(1,'ether')}).buyTokens(accounts[1])

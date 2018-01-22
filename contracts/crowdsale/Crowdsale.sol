@@ -43,6 +43,12 @@ contract Crowdsale {
         buyTokens(msg.sender);
     }
 
+    function changeRate(uint256 _newRate) external {
+        require(msg.sender == wallet);
+
+        rate = _newRate;
+    }
+
     function buyTokens(address beneficiary) public payable {
         uint256 weiAmount = msg.value;
         uint256 tokens = getTokens(weiAmount, now);
