@@ -2,7 +2,10 @@
 <p align="center">
   <img src="https://travis-ci.org/realityreflection/MossCoin.svg?branch=master">
   <a href="http://t.me/mossland">
-    <img src="https://img.shields.io/badge/chat-on%20telegram-red.svg" alt="chat on telegram">
+    <img src="https://img.shields.io/badge/telegram-kor-brightgreen.svg" alt="chat on telegram(kor)">
+  </a>
+  <a href="http://t.me/mossland_eng">
+    <img src="https://img.shields.io/badge/telegram-eng-green.svg" alt="chat on telegram(eng)">
   </a>
   <a href="https://twitter.com/intent/follow?screen_name=TheMossLand">
     <img src="https://img.shields.io/twitter/follow/TheMossLand.svg?style=social&label=Follow" alt="follow on Twitter">
