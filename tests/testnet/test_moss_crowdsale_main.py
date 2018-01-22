@@ -47,80 +47,80 @@ def test_main_bonus_rating(chain, bonus_ether, bonus_rate, rate, testernet_start
     # 1st week
     week1end = start + main_bonus_change_period - 1
 
-    assert token_amount(chain, 5 * w3.toWei(1, 'ether') - 1,  week1end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 31250000000000000000000 - 6250
-    assert token_amount(chain, 5 * w3.toWei(1, 'ether'),      week1end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 32500000000000000000000
-    assert token_amount(chain, 10 * w3.toWei(1, 'ether') - 1, week1end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 65000000000000000000000 - 6500
-    assert token_amount(chain, 10 * w3.toWei(1, 'ether'),     week1end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 67500000000000000000000
-    assert token_amount(chain, 25 * w3.toWei(1, 'ether') - 1, week1end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 168750000000000000000000 - 6750
-    assert token_amount(chain, 25 * w3.toWei(1, 'ether'),     week1end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 175000000000000000000000
-    assert token_amount(chain, 75 * w3.toWei(1, 'ether') - 1, week1end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 525000000000000000000000 - 7000
-    assert token_amount(chain, 75 * w3.toWei(1, 'ether'),     week1end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 543750000000000000000000
+    assert token_amount(chain, 5 * w3.toWei(1, 'ether') - 1,  week1end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 62500000000000000000000 - 12500
+    assert token_amount(chain, 5 * w3.toWei(1, 'ether'),      week1end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 65000000000000000000000
+    assert token_amount(chain, 10 * w3.toWei(1, 'ether') - 1, week1end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 130000000000000000000000 - 13000
+    assert token_amount(chain, 10 * w3.toWei(1, 'ether'),     week1end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 135000000000000000000000
+    assert token_amount(chain, 25 * w3.toWei(1, 'ether') - 1, week1end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 337500000000000000000000 - 13500
+    assert token_amount(chain, 25 * w3.toWei(1, 'ether'),     week1end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 350000000000000000000000
+    assert token_amount(chain, 75 * w3.toWei(1, 'ether') - 1, week1end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 1050000000000000000000000 - 14000
+    assert token_amount(chain, 75 * w3.toWei(1, 'ether'),     week1end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 1087500000000000000000000
     
     # 2nd week
     week2start = start + main_bonus_change_period
     week2end = start + 2 * main_bonus_change_period - 1
 
-    assert token_amount(chain, 5 * w3.toWei(1, 'ether') - 1,  week2start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 28750000000000000000000 - 5750
-    assert token_amount(chain, 5 * w3.toWei(1, 'ether'),      week2start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 30000000000000000000000
-    assert token_amount(chain, 10 * w3.toWei(1, 'ether') - 1, week2start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 60000000000000000000000 - 6000
-    assert token_amount(chain, 10 * w3.toWei(1, 'ether'),     week2start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 62500000000000000000000
-    assert token_amount(chain, 25 * w3.toWei(1, 'ether') - 1, week2start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 156250000000000000000000 - 6250
-    assert token_amount(chain, 25 * w3.toWei(1, 'ether'),     week2start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 168750000000000000000000
-    assert token_amount(chain, 75 * w3.toWei(1, 'ether') - 1, week2start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 506250000000000000000000 - 6750
-    assert token_amount(chain, 75 * w3.toWei(1, 'ether'),     week2start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 525000000000000000000000
+    assert token_amount(chain, 5 * w3.toWei(1, 'ether') - 1,  week2start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 57500000000000000000000 - 11500
+    assert token_amount(chain, 5 * w3.toWei(1, 'ether'),      week2start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 60000000000000000000000
+    assert token_amount(chain, 10 * w3.toWei(1, 'ether') - 1, week2start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 120000000000000000000000 - 12000
+    assert token_amount(chain, 10 * w3.toWei(1, 'ether'),     week2start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 125000000000000000000000
+    assert token_amount(chain, 25 * w3.toWei(1, 'ether') - 1, week2start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 312500000000000000000000 - 12500
+    assert token_amount(chain, 25 * w3.toWei(1, 'ether'),     week2start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 337500000000000000000000
+    assert token_amount(chain, 75 * w3.toWei(1, 'ether') - 1, week2start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 1012500000000000000000000 - 13500
+    assert token_amount(chain, 75 * w3.toWei(1, 'ether'),     week2start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 1050000000000000000000000
 
-    assert token_amount(chain, 5 * w3.toWei(1, 'ether') - 1,  week2end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 28750000000000000000000 - 5750
-    assert token_amount(chain, 5 * w3.toWei(1, 'ether'),      week2end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 30000000000000000000000
-    assert token_amount(chain, 10 * w3.toWei(1, 'ether') - 1, week2end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 60000000000000000000000 - 6000
-    assert token_amount(chain, 10 * w3.toWei(1, 'ether'),     week2end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 62500000000000000000000
-    assert token_amount(chain, 25 * w3.toWei(1, 'ether') - 1, week2end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 156250000000000000000000 - 6250
-    assert token_amount(chain, 25 * w3.toWei(1, 'ether'),     week2end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 168750000000000000000000
-    assert token_amount(chain, 75 * w3.toWei(1, 'ether') - 1, week2end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 506250000000000000000000 - 6750
-    assert token_amount(chain, 75 * w3.toWei(1, 'ether'),     week2end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 525000000000000000000000
+    assert token_amount(chain, 5 * w3.toWei(1, 'ether') - 1,  week2end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 57500000000000000000000 - 11500
+    assert token_amount(chain, 5 * w3.toWei(1, 'ether'),      week2end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 60000000000000000000000
+    assert token_amount(chain, 10 * w3.toWei(1, 'ether') - 1, week2end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 120000000000000000000000 - 12000
+    assert token_amount(chain, 10 * w3.toWei(1, 'ether'),     week2end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 125000000000000000000000
+    assert token_amount(chain, 25 * w3.toWei(1, 'ether') - 1, week2end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 312500000000000000000000 - 12500
+    assert token_amount(chain, 25 * w3.toWei(1, 'ether'),     week2end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 337500000000000000000000
+    assert token_amount(chain, 75 * w3.toWei(1, 'ether') - 1, week2end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 1012500000000000000000000 - 13500
+    assert token_amount(chain, 75 * w3.toWei(1, 'ether'),     week2end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 1050000000000000000000000
     
     # 3rd week
     week3start = start + 2 * main_bonus_change_period
     week3end = start + 3 * main_bonus_change_period - 1
 
-    assert token_amount(chain, 5 * w3.toWei(1, 'ether') - 1,  week3start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 26250000000000000000000 - 5250
-    assert token_amount(chain, 5 * w3.toWei(1, 'ether'),      week3start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 26875000000000000000000
-    assert token_amount(chain, 10 * w3.toWei(1, 'ether') - 1, week3start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 53750000000000000000000 - 5375
-    assert token_amount(chain, 10 * w3.toWei(1, 'ether'),     week3start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 56250000000000000000000
-    assert token_amount(chain, 25 * w3.toWei(1, 'ether') - 1, week3start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 140625000000000000000000 - 5625
-    assert token_amount(chain, 25 * w3.toWei(1, 'ether'),     week3start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 156250000000000000000000
-    assert token_amount(chain, 75 * w3.toWei(1, 'ether') - 1, week3start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 468750000000000000000000 - 6250
-    assert token_amount(chain, 75 * w3.toWei(1, 'ether'),     week3start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 487500000000000000000000
+    assert token_amount(chain, 5 * w3.toWei(1, 'ether') - 1,  week3start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 52500000000000000000000 - 10500
+    assert token_amount(chain, 5 * w3.toWei(1, 'ether'),      week3start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 53750000000000000000000
+    assert token_amount(chain, 10 * w3.toWei(1, 'ether') - 1, week3start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 107500000000000000000000 - 10750
+    assert token_amount(chain, 10 * w3.toWei(1, 'ether'),     week3start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 112500000000000000000000
+    assert token_amount(chain, 25 * w3.toWei(1, 'ether') - 1, week3start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 281250000000000000000000 - 11250
+    assert token_amount(chain, 25 * w3.toWei(1, 'ether'),     week3start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 312500000000000000000000
+    assert token_amount(chain, 75 * w3.toWei(1, 'ether') - 1, week3start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 937500000000000000000000 - 12500
+    assert token_amount(chain, 75 * w3.toWei(1, 'ether'),     week3start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 975000000000000000000000
 
-    assert token_amount(chain, 5 * w3.toWei(1, 'ether') - 1,  week3end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 26250000000000000000000 - 5250
-    assert token_amount(chain, 5 * w3.toWei(1, 'ether'),      week3end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 26875000000000000000000
-    assert token_amount(chain, 10 * w3.toWei(1, 'ether') - 1, week3end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 53750000000000000000000 - 5375
-    assert token_amount(chain, 10 * w3.toWei(1, 'ether'),     week3end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 56250000000000000000000
-    assert token_amount(chain, 25 * w3.toWei(1, 'ether') - 1, week3end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 140625000000000000000000 - 5625
-    assert token_amount(chain, 25 * w3.toWei(1, 'ether'),     week3end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 156250000000000000000000
-    assert token_amount(chain, 75 * w3.toWei(1, 'ether') - 1, week3end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 468750000000000000000000 - 6250
-    assert token_amount(chain, 75 * w3.toWei(1, 'ether'),     week3end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 487500000000000000000000
+    assert token_amount(chain, 5 * w3.toWei(1, 'ether') - 1,  week3end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 52500000000000000000000 - 10500
+    assert token_amount(chain, 5 * w3.toWei(1, 'ether'),      week3end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 53750000000000000000000
+    assert token_amount(chain, 10 * w3.toWei(1, 'ether') - 1, week3end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 107500000000000000000000 - 10750
+    assert token_amount(chain, 10 * w3.toWei(1, 'ether'),     week3end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 112500000000000000000000
+    assert token_amount(chain, 25 * w3.toWei(1, 'ether') - 1, week3end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 281250000000000000000000 - 11250
+    assert token_amount(chain, 25 * w3.toWei(1, 'ether'),     week3end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 312500000000000000000000
+    assert token_amount(chain, 75 * w3.toWei(1, 'ether') - 1, week3end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 937500000000000000000000 - 12500
+    assert token_amount(chain, 75 * w3.toWei(1, 'ether'),     week3end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 975000000000000000000000
 
     # 4th week
     week4start = start + 3 * main_bonus_change_period
     week4end = end
 
-    assert token_amount(chain, 5 * w3.toWei(1, 'ether') - 1,  week4start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 25625000000000000000000 - 5125
-    assert token_amount(chain, 5 * w3.toWei(1, 'ether'),      week4start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 25625000000000000000000
-    assert token_amount(chain, 10 * w3.toWei(1, 'ether') - 1, week4start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 51250000000000000000000 - 5125
-    assert token_amount(chain, 10 * w3.toWei(1, 'ether'),     week4start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 52500000000000000000000
-    assert token_amount(chain, 25 * w3.toWei(1, 'ether') - 1, week4start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 131250000000000000000000 - 5250
-    assert token_amount(chain, 25 * w3.toWei(1, 'ether'),     week4start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 137500000000000000000000
-    assert token_amount(chain, 75 * w3.toWei(1, 'ether') - 1, week4start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 412500000000000000000000 - 5500
-    assert token_amount(chain, 75 * w3.toWei(1, 'ether'),     week4start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 450000000000000000000000
+    assert token_amount(chain, 5 * w3.toWei(1, 'ether') - 1,  week4start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 51250000000000000000000 - 10250
+    assert token_amount(chain, 5 * w3.toWei(1, 'ether'),      week4start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 51250000000000000000000
+    assert token_amount(chain, 10 * w3.toWei(1, 'ether') - 1, week4start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 102500000000000000000000 - 10250
+    assert token_amount(chain, 10 * w3.toWei(1, 'ether'),     week4start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 105000000000000000000000
+    assert token_amount(chain, 25 * w3.toWei(1, 'ether') - 1, week4start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 262500000000000000000000 - 10500
+    assert token_amount(chain, 25 * w3.toWei(1, 'ether'),     week4start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 275000000000000000000000
+    assert token_amount(chain, 75 * w3.toWei(1, 'ether') - 1, week4start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 825000000000000000000000 - 11000
+    assert token_amount(chain, 75 * w3.toWei(1, 'ether'),     week4start, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 900000000000000000000000
 
-    assert token_amount(chain, 5 * w3.toWei(1, 'ether') - 1,  week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 25625000000000000000000 - 5125
-    assert token_amount(chain, 5 * w3.toWei(1, 'ether'),      week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 25625000000000000000000
-    assert token_amount(chain, 10 * w3.toWei(1, 'ether') - 1, week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 51250000000000000000000 - 5125
-    assert token_amount(chain, 10 * w3.toWei(1, 'ether'),     week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 52500000000000000000000
-    assert token_amount(chain, 25 * w3.toWei(1, 'ether') - 1, week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 131250000000000000000000 - 5250
-    assert token_amount(chain, 25 * w3.toWei(1, 'ether'),     week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 137500000000000000000000
-    assert token_amount(chain, 75 * w3.toWei(1, 'ether') - 1, week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 412500000000000000000000 - 5500
-    assert token_amount(chain, 75 * w3.toWei(1, 'ether'),     week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 450000000000000000000000
+    assert token_amount(chain, 5 * w3.toWei(1, 'ether') - 1,  week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 51250000000000000000000 - 10250
+    assert token_amount(chain, 5 * w3.toWei(1, 'ether'),      week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 51250000000000000000000
+    assert token_amount(chain, 10 * w3.toWei(1, 'ether') - 1, week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 102500000000000000000000 - 10250
+    assert token_amount(chain, 10 * w3.toWei(1, 'ether'),     week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 105000000000000000000000
+    assert token_amount(chain, 25 * w3.toWei(1, 'ether') - 1, week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 262500000000000000000000 - 10500
+    assert token_amount(chain, 25 * w3.toWei(1, 'ether'),     week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 275000000000000000000000
+    assert token_amount(chain, 75 * w3.toWei(1, 'ether') - 1, week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 825000000000000000000000 - 11000
+    assert token_amount(chain, 75 * w3.toWei(1, 'ether'),     week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 900000000000000000000000
 
 def test_main_crowdsale_initialized(chain, moss_crowdsale_main, moss_coin, coin_owner, main_period, min_invest, max_invest, cap, rate, token_decimals, invest_decimals, bonus_ether, bonus_rate, main_bonus_change_period):
     w3 = chain.web3
@@ -128,7 +128,7 @@ def test_main_crowdsale_initialized(chain, moss_crowdsale_main, moss_coin, coin_
     assert moss_crowdsale_main.call().minInvest() == (min_invest * (10 ** invest_decimals))
     assert moss_crowdsale_main.call().maxInvest() == (max_invest * (10 ** invest_decimals))
     assert moss_crowdsale_main.call().cap() == (cap * (10 ** token_decimals))
-    assert moss_crowdsale_main.call().weiRaised() == 0
+    assert moss_crowdsale_main.call().tokenRaised() == 0
     assert moss_crowdsale_main.call().token().lower() == moss_coin.address
     assert moss_crowdsale_main.call().wallet() == coin_owner
 

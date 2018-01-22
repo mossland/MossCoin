@@ -42,8 +42,8 @@ def max_invest():
 
 @pytest.fixture(scope='session')
 def cap():
-    return 3000 #for test, real : 10000
+    return 25000000
 
 @pytest.fixture(scope='session')
 def rate():
-    return 5000
+    return 10000

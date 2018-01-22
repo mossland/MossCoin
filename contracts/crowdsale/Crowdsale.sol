@@ -17,7 +17,7 @@ contract Crowdsale {
 
     uint256 public rate;
     
-    uint256 public weiRaised;
+    uint256 public tokenRaised;
 
     uint256 public maxInvest;
     uint256 public minInvest;
@@ -44,13 +44,13 @@ contract Crowdsale {
     }
 
     function buyTokens(address beneficiary) public payable {
-        require(beneficiary != address(0));
-        require(validPurchase(beneficiary));
-
         uint256 weiAmount = msg.value;
         uint256 tokens = getTokens(weiAmount, now);
+        
+        require(beneficiary != address(0));
+        require(validPurchase(beneficiary, tokens));
 
-        weiRaised = weiRaised.add(weiAmount);
+        tokenRaised = tokenRaised.add(tokens);
         balanceOf[beneficiary] = balanceOf[beneficiary].add(weiAmount);
 
         token.sale(beneficiary, tokens);
@@ -63,7 +63,7 @@ contract Crowdsale {
         wallet.transfer(msg.value);
     }
 
-    function validPurchase(address beneficiary) internal view returns (bool) {
+    function validPurchase(address beneficiary, uint256 amount) internal view returns (bool) {
         bool withinPeriod = now >= startTime && now <= endTime;
         bool validCondition = beneficiary != 0x0 && msg.value >= minInvest && balanceOf[beneficiary].add(msg.value) <= maxInvest;
         return withinPeriod && validCondition;

@@ -43,7 +43,7 @@ contract MossCrowdsalePre is MossCrowdsale {
         MossCrowdsale(_startTime, _endTime, _rate, _capEther, _minInvestFinney, _maxInvestFinney, _wallet, _token)
     {
         ends = [_endTime + 1, _endTime + 1, _endTime + 1, _endTime + 1];
-        bonus[0] = [1300, 1350, 1400, 1450, 1500];
+        bonus[0] = [1350, 1400, 1450, 1500, 1550];
     }
 }
 

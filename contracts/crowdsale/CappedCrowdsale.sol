@@ -13,13 +13,13 @@ contract CappedCrowdsale is Crowdsale {
         cap = _cap * 1 ether;
     }
 
-    function validPurchase(address beneficiary) internal view returns (bool) {
-        bool withinCap = weiRaised.add(msg.value) <= cap;
-        return super.validPurchase(beneficiary) && withinCap;
+    function validPurchase(address beneficiary, uint256 amount) internal view returns (bool) {
+        bool withinCap = tokenRaised.add(amount) <= cap;
+        return super.validPurchase(beneficiary, amount) && withinCap;
     }
 
     function hasEnded() public view returns (bool) {
-        bool capReached = weiRaised >= cap;
+        bool capReached = tokenRaised >= cap;
         return super.hasEnded() || capReached;
     }
 }
