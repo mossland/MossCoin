@@ -4,7 +4,7 @@ import '../ownership/Ownable.sol';
 import './StandardToken.sol';
 
 contract FreezableToken is StandardToken, Ownable {
-    event Freeze(address who, uint256 end);
+    event Freeze(address indexed who, uint256 end);
 
     mapping(address=>uint256) freezeEnd;
 

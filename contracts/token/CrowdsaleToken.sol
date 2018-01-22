@@ -9,10 +9,10 @@ contract CrowdsaleToken is StandardToken, Ownable {
     mapping (address => uint256) public waiting;
     uint256 public saled;
 
-    event Sale(address to, uint256 value);
-    event Release(address to);
-    event Reject(address to);
-    event SetCrowdsale(address addr, bool state);
+    event Sale(address indexed to, uint256 value);
+    event Release(address indexed to);
+    event Reject(address indexed to);
+    event SetCrowdsale(address indexed addr, bool state);
 
     function setCrowdsale(address _addr, bool _state) onlyOwner public {
         crowdsales[_addr] = _state;
