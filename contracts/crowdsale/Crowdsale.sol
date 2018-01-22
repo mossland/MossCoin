@@ -16,8 +16,6 @@ contract Crowdsale {
     address public wallet;
 
     uint256 public rate;
-    
-    uint256 public tokenRaised;
 
     uint256 public maxInvest;
     uint256 public minInvest;
@@ -55,8 +53,7 @@ contract Crowdsale {
         
         require(beneficiary != address(0));
         require(validPurchase(beneficiary, tokens));
-
-        tokenRaised = tokenRaised.add(tokens);
+        
         balanceOf[beneficiary] = balanceOf[beneficiary].add(weiAmount);
 
         token.sale(beneficiary, tokens);

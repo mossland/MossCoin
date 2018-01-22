@@ -128,7 +128,6 @@ def test_main_crowdsale_initialized(chain, moss_crowdsale_main, moss_coin, coin_
     assert moss_crowdsale_main.call().minInvest() == (min_invest * (10 ** invest_decimals))
     assert moss_crowdsale_main.call().maxInvest() == (max_invest * (10 ** invest_decimals))
     assert moss_crowdsale_main.call().cap() == (cap * (10 ** token_decimals))
-    assert moss_crowdsale_main.call().tokenRaised() == 0
     assert moss_crowdsale_main.call().token().lower() == moss_coin.address
     assert moss_crowdsale_main.call().wallet() == coin_owner
 
@@ -180,19 +179,19 @@ def test_main_crowdsale_max_invest(chain, moss_crowdsale_main, moss_coin, tester
     assert moss_coin.call().waiting(accounts[1]) == 0
     assert moss_coin.call().waiting(accounts[2]) == token_amount(chain, (max_invest-min_invest) * (10 ** invest_decimals) + 1, testernet_start, bonus_ether, bonus_rate, rate, testernet_start, main_bonus_change_period)
 
-def test_main_crowdsale_state_change(chain, moss_crowdsale_main, moss_coin, coin_owner, accounts, min_invest, invest_decimals):
-    moss_coin.transact({'from':coin_owner}).setCrowdsale(moss_crowdsale_main.address, False)
+def test_main_crowdsale_state_change(chain, moss_crowdsale_main, test_crowdsale, moss_coin, coin_owner, accounts, min_invest, invest_decimals):
+    moss_coin.transact({'from':coin_owner}).setCrowdsale(test_crowdsale.address)
 
     with pytest.raises(TransactionFailed):
         moss_crowdsale_main.transact({'from':accounts[1], 'value':min_invest * (10 ** invest_decimals) }).buyTokens(accounts[1])
     
     assert moss_coin.call().waiting(accounts[1]) == 0
 
-def test_main_crowdsale_state_change_only_owner(chain, moss_crowdsale_main, moss_coin, accounts):
+def test_main_crowdsale_state_change_only_owner(chain, moss_crowdsale_main, test_crowdsale, moss_coin, accounts):
     with pytest.raises(TransactionFailed):
-        moss_coin.transact({'from':accounts[1]}).setCrowdsale(moss_crowdsale_main.address, False)
+        moss_coin.transact({'from':accounts[1]}).setCrowdsale(test_crowdsale.address)
 
-    assert moss_coin.call().crowdsales(moss_crowdsale_main.address)
+    assert moss_coin.call().crowdsale().lower() == moss_crowdsale_main.address
 
 def test_main_crowdsale_release(chain, moss_crowdsale_main, moss_coin, coin_owner, testernet_start, main_bonus_change_period, accounts, rate, bonus_ether, bonus_rate):
     w3 = chain.web3

@@ -5,22 +5,23 @@ import './StandardToken.sol';
 
 contract CrowdsaleToken is StandardToken, Ownable {
     using SafeMath for uint256;
-    mapping (address => bool) public crowdsales;
+    address public crowdsale;
     mapping (address => uint256) public waiting;
     uint256 public saled;
 
     event Sale(address indexed to, uint256 value);
     event Release(address indexed to);
     event Reject(address indexed to);
-    event SetCrowdsale(address indexed addr, bool state);
+    event SetCrowdsale(address indexed addr);
 
-    function setCrowdsale(address _addr, bool _state) onlyOwner public {
-        crowdsales[_addr] = _state;
-        SetCrowdsale(_addr, _state);
+    function setCrowdsale(address _addr) onlyOwner public {
+        crowdsale = _addr;
+        SetCrowdsale(_addr);
     }
 
     modifier onlyCrowdsale() {
-        require(crowdsales[msg.sender]);
+        require(crowdsale != address(0));
+        require(crowdsale == msg.sender);
         _;
     }
 

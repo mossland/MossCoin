@@ -34,7 +34,7 @@ def moss_crowdsale_pre(chain, moss_coin, coin_owner, testernet_start, pre_period
     }
 
     contract, _ = chain.provider.deploy_contract('MossCrowdsalePre', deploy_args=args, deploy_transaction=transaction)
-    moss_coin.transact({'from':coin_owner}).setCrowdsale(contract.address, True)
+    moss_coin.transact({'from':coin_owner}).setCrowdsale(contract.address)
 
     return contract
 
@@ -53,7 +53,22 @@ def moss_crowdsale_main(chain, moss_coin, coin_owner, testernet_start, main_peri
     }
 
     contract, _ = chain.provider.deploy_contract('MossCrowdsaleMain', deploy_args=args, deploy_transaction=transaction)
-    moss_coin.transact({'from':coin_owner}).setCrowdsale(contract.address, True)
+    moss_coin.transact({'from':coin_owner}).setCrowdsale(contract.address)
+
+    return contract
+
+@pytest.fixture
+def test_crowdsale(chain, moss_coin, coin_owner, testernet_start, pre_period, min_invest, max_invest, cap, rate):
+    start = testernet_start
+    end = start + pre_period
+
+    args = [end - 1, end, rate, cap, min_invest, max_invest, coin_owner, moss_coin.address]
+
+    transaction = {
+        "from" : coin_owner
+    }
+
+    contract, _ = chain.provider.deploy_contract('MossCrowdsalePre', deploy_args=args, deploy_transaction=transaction)
 
     return contract
 
