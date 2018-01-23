@@ -32,7 +32,7 @@ def get_account(chain, idx):
 
     return w3.personal.listAccounts[idx]
 
-def sendEther(chain, from_addr, to_addr, amount):
+def send_ether(chain, from_addr, to_addr, amount):
     w3 = chain.web3
     w3.eth.sendTransaction({'from' : from_addr, 'to' : to_addr, 'value' : amount })
 
