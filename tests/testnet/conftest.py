@@ -23,11 +23,11 @@ def testernet_start(chain):
     return next_block['timestamp']
 
 @pytest.fixture
-def moss_crowdsale_pre(chain, moss_coin, coin_owner, testernet_start, pre_period, min_invest, max_invest, cap, rate):
+def moss_crowdsale_pre(chain, moss_coin, coin_owner, testernet_start, pre_period, min_invest, max_invest, cap_pre, rate):
     start = testernet_start
     end = start + pre_period
 
-    args = [start, end, rate, cap, min_invest, max_invest, coin_owner, moss_coin.address]
+    args = [start, end, rate, cap_pre, min_invest, max_invest, coin_owner, moss_coin.address]
 
     transaction = {
         "from" : coin_owner
@@ -39,14 +39,14 @@ def moss_crowdsale_pre(chain, moss_coin, coin_owner, testernet_start, pre_period
     return contract
 
 @pytest.fixture
-def moss_crowdsale_main(chain, moss_coin, coin_owner, testernet_start, main_period, main_bonus_change_period, min_invest, max_invest, cap, rate):
+def moss_crowdsale_main(chain, moss_coin, coin_owner, testernet_start, main_period, main_bonus_change_period, min_invest, max_invest_main, cap_main, rate):
     start = testernet_start
     bonus1 = start + main_bonus_change_period
     bonus2 = bonus1 + main_bonus_change_period
     bonus3 = bonus2 + main_bonus_change_period
     end = start + main_period
 
-    args = [start, bonus1, bonus2, bonus3, end, rate, cap, min_invest, max_invest, coin_owner, moss_coin.address]
+    args = [start, bonus1, bonus2, bonus3, end, rate, cap_main, min_invest, max_invest_main, coin_owner, moss_coin.address]
 
     transaction = {
         "from" : coin_owner
@@ -58,11 +58,11 @@ def moss_crowdsale_main(chain, moss_coin, coin_owner, testernet_start, main_peri
     return contract
 
 @pytest.fixture
-def test_crowdsale(chain, moss_coin, coin_owner, testernet_start, pre_period, min_invest, max_invest, cap, rate):
+def test_crowdsale(chain, moss_coin, coin_owner, testernet_start, pre_period, min_invest, max_invest, cap_pre, rate):
     start = testernet_start
     end = start + pre_period
 
-    args = [end - 1, end, rate, cap, min_invest, max_invest, coin_owner, moss_coin.address]
+    args = [end - 1, end, rate, cap_pre, min_invest, max_invest, coin_owner, moss_coin.address]
 
     transaction = {
         "from" : coin_owner

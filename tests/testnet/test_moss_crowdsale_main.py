@@ -122,12 +122,12 @@ def test_main_bonus_rating(chain, bonus_ether, bonus_rate, rate, testernet_start
     assert token_amount(chain, 75 * w3.toWei(1, 'ether') - 1, week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 825000000000000000000000 - 11000
     assert token_amount(chain, 75 * w3.toWei(1, 'ether'),     week4end, bonus_ether, bonus_rate, rate, start, main_bonus_change_period) == 900000000000000000000000
 
-def test_main_crowdsale_initialized(chain, moss_crowdsale_main, moss_coin, coin_owner, main_period, min_invest, max_invest, cap, rate, token_decimals, invest_decimals, bonus_ether, bonus_rate, main_bonus_change_period):
+def test_main_crowdsale_initialized(chain, moss_crowdsale_main, moss_coin, coin_owner, main_period, min_invest, max_invest_main, cap_main, rate, token_decimals, invest_decimals, bonus_ether, bonus_rate, main_bonus_change_period):
     w3 = chain.web3
     assert moss_crowdsale_main.call().endTime() - moss_crowdsale_main.call().startTime() == main_period
     assert moss_crowdsale_main.call().minInvest() == (min_invest * (10 ** invest_decimals))
-    assert moss_crowdsale_main.call().maxInvest() == (max_invest * (10 ** invest_decimals))
-    assert moss_crowdsale_main.call().cap() == (cap * (10 ** token_decimals))
+    assert moss_crowdsale_main.call().maxInvest() == (max_invest_main * (10 ** invest_decimals))
+    assert moss_crowdsale_main.call().cap() == (cap_main * (10 ** token_decimals))
     assert moss_crowdsale_main.call().token().lower() == moss_coin.address
     assert moss_crowdsale_main.call().wallet() == coin_owner
 
@@ -165,19 +165,19 @@ def test_main_crowdsale_min_invest(chain, moss_crowdsale_main, moss_coin, tester
     moss_crowdsale_main.transact({'from':accounts[1], 'value':min_invest * (10 ** invest_decimals) }).buyTokens(accounts[1])
     assert moss_coin.call().waiting(accounts[1]) == token_amount(chain, min_invest * (10 ** invest_decimals), testernet_start, bonus_ether, bonus_rate, rate, testernet_start, main_bonus_change_period)
 
-def test_main_crowdsale_max_invest(chain, moss_crowdsale_main, moss_coin, testernet_start, main_bonus_change_period, accounts, min_invest, max_invest, invest_decimals, rate, bonus_ether, bonus_rate):
+def test_main_crowdsale_max_invest(chain, moss_crowdsale_main, moss_coin, testernet_start, main_bonus_change_period, accounts, min_invest, max_invest_main, invest_decimals, rate, bonus_ether, bonus_rate):
     with pytest.raises(TransactionFailed):
-        moss_crowdsale_main.transact({'from':accounts[1], 'value':max_invest * (10 ** invest_decimals) + 1}).buyTokens(accounts[1])
+        moss_crowdsale_main.transact({'from':accounts[1], 'value':max_invest_main * (10 ** invest_decimals) + 1}).buyTokens(accounts[1])
     
-    # buy max_invest - min_invest + 1
-    moss_crowdsale_main.transact({'from':accounts[2], 'value':(max_invest-min_invest) * (10 ** invest_decimals) + 1}).buyTokens(accounts[2])
+    # buy max_invest_main - min_invest + 1
+    moss_crowdsale_main.transact({'from':accounts[2], 'value':(max_invest_main-min_invest) * (10 ** invest_decimals) + 1}).buyTokens(accounts[2])
 
-    # if you already bought 'max_invest - min_invest + 1', you cannot buy tokens anymore.
+    # if you already bought 'max_invest_main - min_invest + 1', you cannot buy tokens anymore.
     with pytest.raises(TransactionFailed):
         moss_crowdsale_main.transact({'from':accounts[2], 'value': min_invest * (10 ** invest_decimals)}).buyTokens(accounts[2])
     
     assert moss_coin.call().waiting(accounts[1]) == 0
-    assert moss_coin.call().waiting(accounts[2]) == token_amount(chain, (max_invest-min_invest) * (10 ** invest_decimals) + 1, testernet_start, bonus_ether, bonus_rate, rate, testernet_start, main_bonus_change_period)
+    assert moss_coin.call().waiting(accounts[2]) == token_amount(chain, (max_invest_main-min_invest) * (10 ** invest_decimals) + 1, testernet_start, bonus_ether, bonus_rate, rate, testernet_start, main_bonus_change_period)
 
 def test_main_crowdsale_state_change(chain, moss_crowdsale_main, test_crowdsale, moss_coin, coin_owner, accounts, min_invest, invest_decimals):
     moss_coin.transact({'from':coin_owner}).setCrowdsale(test_crowdsale.address)

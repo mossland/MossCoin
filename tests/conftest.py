@@ -38,11 +38,19 @@ def min_invest():
 
 @pytest.fixture(scope='session')
 def max_invest():
-    return 1000000
+    return 1000000 # 1000 ether
 
 @pytest.fixture(scope='session')
-def cap():
+def max_invest_main():
+    return 2000000 # 2000 ether
+
+@pytest.fixture(scope='session')
+def cap_pre():
     return 25000000
+
+@pytest.fixture(scope='session')
+def cap_main():
+    return 250000000 - 25000000
 
 @pytest.fixture(scope='session')
 def rate():
