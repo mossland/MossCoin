@@ -13,7 +13,7 @@ contract Crowdsale {
     uint256 public startTime;
     uint256 public endTime;
 
-    address public wallet;
+    address wallet;
 
     uint256 public rate;
 

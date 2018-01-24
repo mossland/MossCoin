@@ -129,7 +129,6 @@ def test_main_crowdsale_initialized(chain, moss_crowdsale_main, moss_coin, coin_
     assert moss_crowdsale_main.call().maxInvest() == (max_invest_main * (10 ** invest_decimals))
     assert moss_crowdsale_main.call().cap() == (cap_main * (10 ** token_decimals))
     assert moss_crowdsale_main.call().token().lower() == moss_coin.address
-    assert moss_crowdsale_main.call().wallet() == coin_owner
 
     for i in range(0, len(bonus_ether)):
         assert moss_crowdsale_main.call().values(i) == bonus_ether[i] * w3.toWei(1, 'ether')
