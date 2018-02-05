@@ -5,6 +5,9 @@ from populus.project import Project
 proj = Project(project_dir='./')
 password = 'testpass'
 
+with proj.get_chain('mainnet') as main:
+    mw3 = main.web3
+
 with proj.get_chain('rinkeby') as rinkeby:
     rw3 = rinkeby.web3
 
@@ -42,7 +45,7 @@ def crowdsale_pre(chain, period, cap, force_deploy = False):
     moss_coin = coin(chain)
     coin_addr = moss_coin.address
 
-    args = [start, end, 1, cap, 1, cap * 1000, chain.web3.eth.coinbase, coin_addr]
+    args = [start, end, 10000, cap, 1, cap, chain.web3.eth.coinbase, coin_addr]
 
     transaction = {
         'from' : chain.web3.eth.coinbase
@@ -53,7 +56,7 @@ def crowdsale_pre(chain, period, cap, force_deploy = False):
     else:
         contract, _ = chain.provider.get_or_deploy_contract('MossCrowdsalePre', deploy_args=args, deploy_transaction=transaction)
 
-    moss_coin.transact({'from':chain.web3.eth.coinbase}).setCrowdsale(contract.address, True)
+    moss_coin.transact({'from':chain.web3.eth.coinbase}).setCrowdsale(contract.address)
 
     return contract
 
