@@ -14,9 +14,9 @@
 
 ## Requirements
 - OSX or linux
-- [python3](www.python.org)
-- [solc](solidity.readthedocs.io/en/latest/installing-solidity.html)
-- [populus](github.com/ethereum/populus)
+- [python3](https://www.python.org)
+- [solc](http://solidity.readthedocs.io/en/latest/installing-solidity.html)
+- [populus](https://github.com/ethereum/populus)
 
 ## Contracts
 MossCoin is a token which is based on Zepplin StandardToken ERC-20 contract.
@@ -25,7 +25,7 @@ If you want to know more detailed information about this project, visit our [web
 
 ## Installation
 
-1. Install [python3](www.python.org) and [solc](solidity.readthedocs.io/en/latest/installing-solidity.html). follow install instruction on link.
+1. Install [python3](https://www.python.org) and [solc](http://solidity.readthedocs.io/en/latest/installing-solidity.html). follow install instruction on link.
 
 2. Initialize development environment. Execute the command below. 
 ```
