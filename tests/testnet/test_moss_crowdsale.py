@@ -153,6 +153,15 @@ def test_over_cap(chain, moss_crowdsale, moss_coin, coin_owner, accounts, rate, 
     moss_coin.transact({'from':coin_owner}).reject(accounts[1])
     moss_crowdsale.transact({'from':accounts[4], 'value': cap_main // (rate * 2) * (10 ** token_decimals)}).buyTokens(accounts[4])
 
+def test_presale_invest(chain, moss_coin, coin_owner, accounts, moss_crowdsale, test_crowdsale, max_invest):
+    w3 = chain.web3
+    moss_coin.transact({'from':coin_owner}).setCrowdsale(test_crowdsale.address)
+    test_crowdsale.transact({'from':accounts[1], 'value' : (max_invest - 1) * w3.toWei(1, 'finney')}).buyTokens(accounts[1])
+
+    moss_coin.transact({'from':coin_owner}).setCrowdsale(moss_crowdsale.address)
+    with pytest.raises(TransactionFailed):
+        moss_crowdsale.transact({'from':accounts[1], 'value' : w3.toWei(1, 'ether') + 1}).buyTokens(accounts[1])
+
 def test_change_rate(chain, moss_crowdsale, coin_owner):
     moss_crowdsale.transact({'from':coin_owner}).changeRate(1000)
 
