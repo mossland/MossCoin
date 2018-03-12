@@ -26,15 +26,19 @@ def pre_period():
 
 @pytest.fixture(scope='session')
 def main_period():
-    return 4*7*24*60*60 # 4 weeks
+    return 4*60 # for test, real : 4 weeks
 
 @pytest.fixture(scope='session')
 def main_bonus_change_period():
-    return 7*24*60*60 # 1 week
+    return 60 # for test, real : 1 week
 
 @pytest.fixture(scope='session')
 def min_invest():
     return 100
+
+@pytest.fixture(scope='session')
+def max_invest():
+    return 10000
 
 @pytest.fixture(scope='session')
 def cap_pre():
@@ -42,7 +46,7 @@ def cap_pre():
 
 @pytest.fixture(scope='session')
 def cap_main():
-    return 250000000 - 25000000
+    return 100000 # for test, real : 24999451
 
 @pytest.fixture(scope='session')
 def rate():

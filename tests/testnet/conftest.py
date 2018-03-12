@@ -23,52 +23,42 @@ def testernet_start(chain):
     return next_block['timestamp']
 
 @pytest.fixture
-def moss_crowdsale_pre(chain, moss_coin, coin_owner, testernet_start, pre_period, min_invest, cap_pre, rate):
-    start = testernet_start
-    end = start + pre_period
-
-    args = [start, end, rate, cap_pre, min_invest, coin_owner, moss_coin.address]
-
-    transaction = {
-        "from" : coin_owner
-    }
-
-    contract, _ = chain.provider.deploy_contract('MossCrowdsalePre', deploy_args=args, deploy_transaction=transaction)
-    moss_coin.transact({'from':coin_owner}).setCrowdsale(contract.address)
-
-    return contract
+def ico_start(chain, test_crowdsale):
+    block = chain.web3.eth.getBlock('latest')
+    next_block = chain.web3.eth.getBlock(block.number+1)
+    return next_block['timestamp']
 
 @pytest.fixture
-def moss_crowdsale_main(chain, moss_coin, coin_owner, testernet_start, main_period, main_bonus_change_period, min_invest, cap_main, rate):
-    start = testernet_start
+def moss_crowdsale(chain, moss_coin, coin_owner, ico_start, main_period, main_bonus_change_period, min_invest, max_invest, cap_main, rate, test_crowdsale):
+    start = ico_start
     bonus1 = start + main_bonus_change_period
     bonus2 = bonus1 + main_bonus_change_period
     bonus3 = bonus2 + main_bonus_change_period
     end = start + main_period
 
-    args = [start, bonus1, bonus2, bonus3, end, rate, cap_main, min_invest, coin_owner, moss_coin.address]
+    args = [start, bonus1, bonus2, bonus3, end, rate, cap_main, min_invest, max_invest, coin_owner, moss_coin.address, test_crowdsale.address]
 
     transaction = {
         "from" : coin_owner
     }
 
-    contract, _ = chain.provider.deploy_contract('MossCrowdsaleMain', deploy_args=args, deploy_transaction=transaction)
+    contract, _ = chain.provider.deploy_contract('MossCrowdsale', deploy_args=args, deploy_transaction=transaction)
     moss_coin.transact({'from':coin_owner}).setCrowdsale(contract.address)
 
     return contract
 
 @pytest.fixture
-def test_crowdsale(chain, moss_coin, coin_owner, testernet_start, pre_period, min_invest, cap_pre, rate):
+def test_crowdsale(chain, moss_coin, coin_owner, testernet_start, pre_period, min_invest, max_invest, cap_pre, rate):
     start = testernet_start
     end = start + pre_period
 
-    args = [end - 1, end, rate, cap_pre, min_invest, coin_owner, moss_coin.address]
+    args = [start, end, rate, min_invest, max_invest, coin_owner, moss_coin.address]
 
     transaction = {
         "from" : coin_owner
     }
 
-    contract, _ = chain.provider.deploy_contract('MossCrowdsalePre', deploy_args=args, deploy_transaction=transaction)
+    contract, _ = chain.provider.deploy_contract('Crowdsale', deploy_args=args, deploy_transaction=transaction)
 
     return contract
 

@@ -5,6 +5,9 @@ import '../token/CrowdsaleToken.sol';
 
 contract Crowdsale {
     using SafeMath for uint256;
+
+    mapping(address => uint256) public balanceOf;
+
     CrowdsaleToken public token;
 
     uint256 public startTime;
@@ -14,11 +17,12 @@ contract Crowdsale {
 
     uint256 public rate;
 
+    uint256 public maxInvest;
     uint256 public minInvest;
 
     event TokenPurchase(address indexed purchaser, address indexed beneficiary, uint256 value, uint256 amount);
 
-    function Crowdsale(uint256 _startTime, uint256 _endTime, uint256 _rate, uint256 _minInvest, address _wallet, address _token) public {
+    function Crowdsale(uint256 _startTime, uint256 _endTime, uint256 _rate, uint256 _minInvest, uint256 _maxInvest, address _wallet, address _token) public {
         require(_startTime >= now);
         require(_endTime >= _startTime);
         require(_rate > 0);
@@ -30,6 +34,7 @@ contract Crowdsale {
         rate = _rate;
         wallet = _wallet;
         minInvest = _minInvest * 1 finney;
+        maxInvest = _maxInvest * 1 finney;
     }
 
     function() external payable {
@@ -48,6 +53,8 @@ contract Crowdsale {
         
         require(beneficiary != address(0));
         require(validPurchase(beneficiary, tokens));
+        
+        balanceOf[beneficiary] = balanceOf[beneficiary].add(weiAmount);
 
         token.sale(beneficiary, tokens);
         TokenPurchase(msg.sender, beneficiary, weiAmount, tokens);
@@ -61,7 +68,7 @@ contract Crowdsale {
 
     function validPurchase(address beneficiary, uint256 amount) internal view returns (bool) {
         bool withinPeriod = now >= startTime && now <= endTime;
-        bool validCondition = beneficiary != 0x0 && msg.value >= minInvest;
+        bool validCondition = beneficiary != 0x0 && msg.value >= minInvest && balanceOf[beneficiary].add(msg.value) <= maxInvest;
         return withinPeriod && validCondition;
     }
 
