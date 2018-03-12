@@ -123,7 +123,15 @@ def test_crowdsale_reject_only_owner(chain, moss_crowdsale, moss_coin, coin_owne
 
 
 # bonus rating test
-# def test_crowdsale_bonus_rating(chain, moss_crowdsale, moss_coin, coin_owner, accounts, rate, bonus_time, bonus_rate):
+def test_crowdsale_bonus_rating(chain, moss_crowdsale, moss_coin, coin_owner, accounts, rate, bonus_time, bonus_rate):
+    w3 = chain.web3
+    for criteria in bonus_time[:-1]:
+        while criteria >= chain.web3.eth.getBlock('latest').timestamp:
+            chain.rpc_methods.evm_mine()
+        
+        balance = moss_coin.call().waiting(accounts[1])
+        moss_crowdsale.transact({'from':accounts[1], 'value' : w3.toWei(1,'ether')}).buyTokens(accounts[1])
+        assert moss_coin.call().waiting(accounts[1]) == balance + token_amount(chain, w3.toWei(1,'ether'), chain.web3.eth.getBlock('latest').timestamp, bonus_time, bonus_rate, rate)
 
 def test_after_crowdsale_end(chain, moss_crowdsale, moss_coin, coin_owner, accounts, rate):
     w3 = chain.web3
