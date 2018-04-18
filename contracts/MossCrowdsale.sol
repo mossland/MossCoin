@@ -1,7 +1,7 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
-import './crowdsale/Crowdsale.sol';
-import './crowdsale/CappedCrowdsale.sol';
+import "./crowdsale/Crowdsale.sol";
+import "./crowdsale/CappedCrowdsale.sol";
 
 //pre ico crowdsale contract
 contract MossCrowdsale is CappedCrowdsale {

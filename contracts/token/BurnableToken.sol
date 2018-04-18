@@ -1,7 +1,7 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
-import '../ownership/Ownable.sol';
-import './BasicToken.sol';
+import "../ownership/Ownable.sol";
+import "./BasicToken.sol";
 
 contract BurnableToken is BasicToken, Ownable {
     event Burn(uint256 value);
@@ -11,6 +11,6 @@ contract BurnableToken is BasicToken, Ownable {
 
         balances[owner] = balances[owner].sub(_value);
         totalSupply = totalSupply.sub(_value);
-        Burn(_value);
+        emit Burn(_value);
     }
 }

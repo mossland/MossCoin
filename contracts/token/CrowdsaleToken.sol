@@ -1,7 +1,7 @@
-pragma solidity ^0.4.18;
-import '../math/SafeMath.sol';
-import '../ownership/Ownable.sol';
-import './StandardToken.sol';
+pragma solidity ^0.4.21;
+import "../math/SafeMath.sol";
+import "../ownership/Ownable.sol";
+import "./StandardToken.sol";
 
 contract CrowdsaleToken is StandardToken, Ownable {
     using SafeMath for uint256;
@@ -16,7 +16,7 @@ contract CrowdsaleToken is StandardToken, Ownable {
 
     function setCrowdsale(address _addr) onlyOwner public {
         crowdsale = _addr;
-        SetCrowdsale(_addr);
+        emit SetCrowdsale(_addr);
     }
 
     modifier onlyCrowdsale() {
@@ -31,7 +31,7 @@ contract CrowdsaleToken is StandardToken, Ownable {
 
         saled = saled.add(_value);
         waiting[_to] = waiting[_to].add(_value);
-        Sale(_to, _value);
+        emit Sale(_to, _value);
         return true;
     }
 
@@ -43,7 +43,7 @@ contract CrowdsaleToken is StandardToken, Ownable {
         waiting[_to] = 0;
         balances[owner] = balances[owner].sub(val);
         balances[_to] = balances[_to].add(val);
-        Release(_to);
+        emit Release(_to);
     }
 
     // reject waiting token
@@ -53,6 +53,6 @@ contract CrowdsaleToken is StandardToken, Ownable {
         saled = saled.sub(waiting[_to]);
         waiting[_to] = 0;
 
-        Reject(_to);
+        emit Reject(_to);
     }
 }

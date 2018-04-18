@@ -1,6 +1,6 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
-import './ERC20Basic.sol';
+import "./ERC20Basic.sol";
 
 contract ERC20 is ERC20Basic {
     function allowance(address owner, address spender) public view returns (uint256);

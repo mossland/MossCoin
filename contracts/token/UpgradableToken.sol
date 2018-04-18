@@ -1,8 +1,8 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
-import '../ownership/Ownable.sol';
-import '../math/SafeMath.sol';
-import './StandardToken.sol';
+import "../ownership/Ownable.sol";
+import "../math/SafeMath.sol";
+import "./StandardToken.sol";
 
 contract UpgradeAgent {
     function upgradeFrom(address _from, uint256 _value) public;
@@ -25,7 +25,7 @@ contract UpgradableToken is StandardToken, Ownable {
         totalSupply = totalSupply.sub(_value);
         totalUpgraded = totalUpgraded.add(_value);
         UpgradeAgent(upgradeAgent).upgradeFrom(msg.sender, _value);
-        Upgrade(msg.sender, upgradeAgent, _value);
+        emit Upgrade(msg.sender, upgradeAgent, _value);
     }
 
     function setUpgradeAgent(address _agent) external onlyOwner {

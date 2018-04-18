@@ -1,8 +1,8 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
-import '../token/StandardToken.sol';
-import '../token/UpgradableToken.sol';
-import '../math/SafeMath.sol';
+import "../token/StandardToken.sol";
+import "../token/UpgradableToken.sol";
+import "../math/SafeMath.sol";
 
 contract UpgradeTestToken is StandardToken, UpgradeAgent {
     using SafeMath for uint256;

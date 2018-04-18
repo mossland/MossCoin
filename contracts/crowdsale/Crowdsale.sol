@@ -1,7 +1,7 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
-import '../math/SafeMath.sol';
-import '../token/CrowdsaleToken.sol';
+import "../math/SafeMath.sol";
+import "../token/CrowdsaleToken.sol";
 
 contract Crowdsale {
     using SafeMath for uint256;
@@ -57,7 +57,7 @@ contract Crowdsale {
         balanceOf[beneficiary] = balanceOf[beneficiary].add(weiAmount);
 
         token.sale(beneficiary, tokens);
-        TokenPurchase(msg.sender, beneficiary, weiAmount, tokens);
+        emit TokenPurchase(msg.sender, beneficiary, weiAmount, tokens);
 
         forwardFunds();
     }
@@ -73,7 +73,7 @@ contract Crowdsale {
     }
 
     function hasEnded() public view returns (bool) {
-        return now > endTime;
+        return block.timestamp > endTime;
     }
 
     function getTokens(uint256 _wei, uint256 _time) public view returns (uint256) {

@@ -1,7 +1,7 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
-import '../ownership/Ownable.sol';
-import './StandardToken.sol';
+import "../ownership/Ownable.sol";
+import "./StandardToken.sol";
 
 contract FreezableToken is StandardToken, Ownable {
     event Freeze(address indexed who, uint256 end);
@@ -14,7 +14,7 @@ contract FreezableToken is StandardToken, Ownable {
 
         freezeEnd[_who] = _end;
 
-        Freeze(_who, _end);
+        emit Freeze(_who, _end);
     }
 
     modifier notFrozen(address _who) {

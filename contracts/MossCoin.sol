@@ -1,9 +1,9 @@
-pragma solidity ^0.4.18;
+pragma solidity ^0.4.21;
 
-import './ownership/Ownable.sol';
-import './token/BurnableToken.sol';
-import './token/UpgradableToken.sol';
-import './token/FreezableToken.sol';
+import "./ownership/Ownable.sol";
+import "./token/BurnableToken.sol";
+import "./token/UpgradableToken.sol";
+import "./token/FreezableToken.sol";
 
 contract MossCoin is FreezableToken, UpgradableToken, BurnableToken {
     string public constant name = "Moss Coin";
