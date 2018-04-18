@@ -3,10 +3,9 @@ pragma solidity ^0.4.18;
 import './ownership/Ownable.sol';
 import './token/BurnableToken.sol';
 import './token/UpgradableToken.sol';
-import './token/CrowdsaleToken.sol';
 import './token/FreezableToken.sol';
 
-contract MossCoin is FreezableToken, UpgradableToken, CrowdsaleToken, BurnableToken {
+contract MossCoin is FreezableToken, UpgradableToken, BurnableToken {
     string public constant name = "Moss Coin";
     string public constant symbol = "MOC";
     uint8 public constant decimals = 18;
