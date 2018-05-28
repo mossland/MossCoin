@@ -10,7 +10,7 @@ contract BurnableToken is BasicToken, Ownable {
         require(_value <= balances[owner]);
 
         balances[owner] = balances[owner].sub(_value);
-        totalSupply = totalSupply.sub(_value);
+        totalSupply_ = totalSupply_.sub(_value);
         emit Burn(_value);
     }
 }

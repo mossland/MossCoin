@@ -3,7 +3,10 @@
     "compilation" : {
         "contracts_source_dirs" : [ "./contracts" ],
         "settings": {
-            "optimize" : true,
+            "optimizer" : {
+                "enabled" : true,
+                "runs" : 200
+            },
             "import_remappings" : []
         }
     },
