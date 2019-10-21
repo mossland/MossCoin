@@ -45,4 +45,4 @@ urllib3==1.22
 virtualenv==15.1.0
 watchdog==0.8.3
 web3==3.16.4
-Werkzeug==0.14.1
+Werkzeug==0.15.3
