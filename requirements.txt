@@ -30,7 +30,7 @@ pyethash==0.1.27
 pylru==1.0.9
 pysha3==1.0.2
 pytest==3.2.5
-PyYAML==3.12
+PyYAML==5.4
 repoze.lru==0.7
 requests>=2.20.0
 rlp==0.6.0
