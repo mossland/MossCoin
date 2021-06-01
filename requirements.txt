@@ -41,7 +41,7 @@ six==1.11.0
 toolz==0.9.0
 toposort==1.5
 tox==2.9.1
-urllib3==1.22
+urllib3==1.26.5
 virtualenv==15.1.0
 watchdog==0.8.3
 web3==3.16.4
