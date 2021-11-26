@@ -22,7 +22,7 @@ This repository, ERC-20 based MossCoin, is deprecated and no more work will be d
 ## Token Swap Guide and Contract Addresses 
 - [Token Swap Guide](https://twitter.com/themossland/status/1258354379150647299)
 - [LMT Contract](https://scan.luniverse.io/tokens/0x878120A5C9828759A250156c66D629219F07C5c6)
-- [Deprecated ERC-20 Contract] [MossCoin ERC-20 contract](https://etherscan.io/address/0x865ec58b06bf6305b886793aa20a2da31d034e68)
+- [Deprecated ERC-20 Contract](https://etherscan.io/address/0x865ec58b06bf6305b886793aa20a2da31d034e68)
 
 ---
 
