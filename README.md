@@ -12,10 +12,17 @@
   </a>
 </p>
 
+---
+📌 **Deprecation Notice**
+
+This repository, ERC-20 based MossCoin, is deprecated and no more work will be done on this by Mossland because MossCoin was swapped to [Luniverse Main Token(LMT)](https://luniverse.io).
+
+---
+
 ## Token Swap 
 - [Swap Guide to Luniverse based Token](https://twitter.com/themossland/status/1258354379150647299)
-- [MossCoin LMT contract](https://scan.luniverse.io/tokens/0x878120A5C9828759A250156c66D629219F07C5c6)
-- [deprecated] [MossCoin ERC-20 contract](https://etherscan.io/address/0x865ec58b06bf6305b886793aa20a2da31d034e68)
+- [LMT Contract](https://scan.luniverse.io/tokens/0x878120A5C9828759A250156c66D629219F07C5c6)
+- [Deprecated ERC-20 Contract] [MossCoin ERC-20 contract](https://etherscan.io/address/0x865ec58b06bf6305b886793aa20a2da31d034e68)
 
 ## Requirements
 - OSX or linux
