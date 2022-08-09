@@ -9,6 +9,7 @@
 📌 **Deprecation Notice**
 
 This repository, ERC-20 based MossCoin, is deprecated and no more work will be done on this by Mossland because MossCoin was swapped to [Luniverse Main Token(LMT)](https://luniverse.io).
+- [scan.luniverse.io](https://scan.luniverse.io/tokens/0x878120A5C9828759A250156c66D629219F07C5c6)
 
 ---
 
