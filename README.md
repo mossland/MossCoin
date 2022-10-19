@@ -1,11 +1,6 @@
-<p align="center"> <img src="/img/logo.png"> </p>
-<p align="center">
-  <a href="https://twitter.com/intent/follow?screen_name=TheMossLand">
-    <img src="https://img.shields.io/twitter/follow/TheMossLand.svg?style=social&label=Follow" alt="follow on Twitter">
-  </a>
-</p>
+![Mosscoin](https://user-images.githubusercontent.com/109493423/196603685-76a1e1a3-947c-4e8e-9584-0727eaf9a07c.png)
 
----
+
 📌 **Deprecation Notice**
 
 This repository, ERC-20 based MossCoin, is deprecated and no more work will be done on this by Mossland because MossCoin was swapped to [Luniverse Main Token(LMT)](https://luniverse.io).
