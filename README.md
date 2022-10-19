@@ -1,9 +1,4 @@
-<p align="center"> <img src="/img/logo.png"> </p>
-<p align="center">
-  <a href="https://twitter.com/intent/follow?screen_name=TheMossLand">
-    <img src="https://img.shields.io/twitter/follow/TheMossLand.svg?style=social&label=Follow" alt="follow on Twitter">
-  </a>
-</p>
+![Mosscoin](https://user-images.githubusercontent.com/109493423/196595529-129fbb18-a3f4-4053-a8da-01c17ba287a8.png)
 
 ---
 📌 **Deprecation Notice**
