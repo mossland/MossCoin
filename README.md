@@ -6,17 +6,20 @@
 </p>
 
 ---
-📌 **Deprecation Notice**
+📌 **Deprecation Notice — this is the legacy 2018 ERC-20 (do not use)**
 
-This repository, ERC-20 based MossCoin, is deprecated and no more work will be done on this by Mossland because MossCoin was swapped to [Luniverse Main Token(LMT)](https://luniverse.io).
-- [scan.luniverse.io](https://scan.luniverse.io/tokens/0x878120A5C9828759A250156c66D629219F07C5c6)
+This repository holds the **original 2018 ERC-20 MossCoin (MOC)** and is **deprecated**. The current, official MOC is the **2025 Ethereum mainnet ERC-20**:
+
+- **Current MOC (2025 ERC-20):** [`0x8bbfe65e31b348cd823c62e02ad8c19a84dd0dab`](https://etherscan.io/token/0x8bbfe65e31b348cd823c62e02ad8c19a84dd0dab) — source & docs: [mossland/MossCoin-ERC20-2025](https://github.com/mossland/MossCoin-ERC20-2025)
+- Supported migration path: **Luniverse MOC → 2025 ERC-20**. This legacy 2018 ERC-20 is **not** part of the migration path, and the Wrapped MOC (WMOC) swap route is inactive.
+
+> ⚠️ **Anti-phishing:** only use the current 2025 mainnet address above, confirmed via official Mossland channels. Do not deposit to, or swap from, the legacy contracts below.
 
 ---
 
-## Token Swap Guide and Contract Addresses 
-- [Token Swap Guide](https://twitter.com/themossland/status/1258354379150647299)
-- [LMT Contract](https://scan.luniverse.io/tokens/0x878120A5C9828759A250156c66D629219F07C5c6)
-- [DEPRECATED][ERC-20 Contract](https://etherscan.io/address/0x865ec58b06bf6305b886793aa20a2da31d034e68)
+## Legacy contracts (reference only — do not use)
+- [Legacy 2018 ERC-20 (this repo)](https://etherscan.io/token/0x865ec58b06bf6305b886793aa20a2da31d034e68)
+- [Luniverse MOC (LMT)](https://scan.luniverse.io/tokens/0x878120A5C9828759A250156c66D629219F07C5c6)
 
 ---
 
@@ -37,7 +40,7 @@ If you want to know more detailed information about this project, visit our [web
 
 2. Initialize development environment. Execute the command below. 
 ```
-git clone --recursive git@github.com:MossCoin/MossCoin.git
+git clone --recursive git@github.com:mossland/MossCoin.git
 cd MossCoin
 python3 -m venv venv
 source venv/bin/activate
